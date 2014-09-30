@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>doorbell.m4a</file>
+    </qresource>
+</RCC>
