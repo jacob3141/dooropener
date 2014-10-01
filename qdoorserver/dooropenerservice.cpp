@@ -194,7 +194,7 @@ void DoorOpenerService::dataReceivedOnSerial()
 void DoorOpenerService::sendDataOnSerial(QString data)
 {
     qDebug() << "Writing data to serial port: " << data;
-    _serialPort->write(data.toUtf8());
+    _serialPort->write(data.toUtf8() + "\n");
 }
 
 void DoorOpenerService::turnOnDoorOpener()

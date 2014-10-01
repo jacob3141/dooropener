@@ -43,31 +43,31 @@ void setup() {
 }
 
 void loop() {
-  // Check if bell rings at bell input pin
-  if(digitalRead(BELL_IN) == HIGH) {
-    Serial.println("bell\n");    
-  }
-  
-  // Read data from serial port if available
   while(Serial.available() > 0) {
+    // Read data from serial port if available
     char c = Serial.read();
     
     // If line ends or maximum buffer size reached, handle line
     if(c == '\n' || c == '\r' || (readBufferPosition == BUFFER_SIZE - 1)) {
-      readBuffer[readBufferPosition] = 0;
+      readBuffer[readBufferPosition] = '\0';
       handleInputLine();
       readBufferPosition = 0;
-      
     // Otherwise, append character
     } else {
       readBuffer[readBufferPosition] = c;
-      readBufferPosition++;      
+      readBufferPosition++;
     }
-  }  
+  }
+  
+  // Check if bell rings at bell input pin
+  if(digitalRead(BELL_IN) == HIGH) {
+    //Serial.println("bell");
+  }
 }
 
 // Handles a server command
 void handleInputLine() {
+  Serial.println("ACK");
   if (readBuffer[0] == '1') {
       digitalWrite(RELAIS_DOOR_OUT_1, HIGH);
   } else if (readBuffer[0] == '0') {
