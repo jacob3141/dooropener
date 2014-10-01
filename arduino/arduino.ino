@@ -61,7 +61,7 @@ void loop() {
   
   // Check if bell rings at bell input pin
   if(digitalRead(BELL_IN) == HIGH) {
-    //Serial.println("bell");
+    Serial.println("bell");
   }
 }
 

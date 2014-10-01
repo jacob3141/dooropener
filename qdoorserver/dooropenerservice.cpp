@@ -32,6 +32,7 @@ DoorOpenerService::DoorOpenerService(QObject *parent)
     : QWebSocketServer("DoorServer", QWebSocketServer::NonSecureMode, parent)
 {
     _serialPort = new QSerialPort();
+    _serialPort->setBaudRate(9600);
 
     // Time between device discoveries
     _deviceDiscoveryTimer = new QTimer();
@@ -187,14 +188,19 @@ void DoorOpenerService::dataReceivedOnSerial()
 {
     if(_serialPort->canReadLine()) {
         QByteArray byteArray = _serialPort->readLine();
-        qDebug() << "Received data on serial port: " << QString::fromUtf8(byteArray);
+        QString messageReceived = QString::fromUtf8(byteArray);
+        qDebug() << "Received data on serial port: " << messageReceived;
+
+        if(messageReceived.contains("bell")) {
+            sendBroadcast("doorRing");
+        }
     }
 }
 
 void DoorOpenerService::sendDataOnSerial(QString data)
 {
     qDebug() << "Writing data to serial port: " << data;
-    _serialPort->write(data.toUtf8() + "\n");
+    _serialPort->write(QString("%1%2").arg(data).arg("\n").toUtf8());
 }
 
 void DoorOpenerService::turnOnDoorOpener()

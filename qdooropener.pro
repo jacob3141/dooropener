@@ -18,10 +18,14 @@
 #
 
 TEMPLATE = subdirs
-SUBDIRS = qdoorserver qdoorclient
+SUBDIRS = qdoorserver qdoorclient arduino
 
 qdoorserver.subdir = qdoorserver
 qdoorserver.depends =
 
 qdoorclient.subdir = qdoorclient
 qdoorclient.depends =
+
+arduino.subdir = arduino
+arduino.depends =
+
