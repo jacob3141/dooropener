@@ -76,7 +76,7 @@ void MainWindow::on_pushButtonOpen_clicked()
 
 void MainWindow::removeSplash()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
 void MainWindow::handleServerMessage(QString message) {
