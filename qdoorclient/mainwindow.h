@@ -42,6 +42,8 @@ public:
     ~MainWindow();
 
 public slots:
+    void removeSplash();
+
     void on_pushButtonOpen_clicked();
 
     void connectedToServer();
@@ -54,6 +56,7 @@ private:
     QWebSocket *_webSocket;
     QMediaPlayer *_mediaPlayer;
     QTimer *_timer;
+    QTimer *_splashTimer;
     bool _connected;
 };
 

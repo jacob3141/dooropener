@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _webSocket = new QWebSocket();
     _mediaPlayer = new QMediaPlayer();
     _timer = new QTimer();
+    _splashTimer = new QTimer();
     _connected = false;
 
     connect(_webSocket, SIGNAL(connected()), this, SLOT(connectedToServer()));
@@ -40,9 +41,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_webSocket, SIGNAL(textMessageReceived(QString)), this, SLOT(handleServerMessage(QString)));
     connect(_timer, SIGNAL(timeout()), this, SLOT(tryReconnect()));
 
+    connect(_splashTimer, SIGNAL(timeout()), this, SLOT(removeSplash()));
+
     _timer->setInterval(1000);
     _timer->setSingleShot(false);
     _timer->start();
+
+    _splashTimer->setInterval(1000);
+    _splashTimer->setSingleShot(true);
+    _splashTimer->start();
 }
 
 MainWindow::~MainWindow()
@@ -65,6 +72,11 @@ void MainWindow::disconnectedFromServer()
 void MainWindow::on_pushButtonOpen_clicked()
 {
     _webSocket->sendTextMessage("openDoor");
+}
+
+void MainWindow::removeSplash()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::handleServerMessage(QString message) {

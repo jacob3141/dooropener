@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/images">
         <file>doorbell.m4a</file>
+        <file>settings.png</file>
+        <file>home.png</file>
+        <file>doorlogo.png</file>
+        <file>automatic.png</file>
     </qresource>
 </RCC>
