@@ -29,10 +29,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    dooropenerservice.cpp
+    dooropenerservice.cpp \
+    cameraframegrabber.cpp
 
 HEADERS += \
-    dooropenerservice.h
+    dooropenerservice.h \
+    cameraframegrabber.h
 
 OTHER_FILES += \
     door.json.example

@@ -119,6 +119,7 @@ void MainWindow::removeSplash()
 }
 
 void MainWindow::handleServerMessage(QString message) {
+
     if(message.contains("doorRing")) {
         ui->labelConnectionState->setText("Ring ring..");
         if(!ui->autoPushButton->isChecked()) {
@@ -136,10 +137,10 @@ void MainWindow::handleServerMessage(QString message) {
     if(message.contains("didOpenDoor")) {
         ui->labelConnectionState->setText("Yo mate, it's done.");
     }
+
     if(message.startsWith("image") && !_dontUpdateVideoFrame) {
         // Remove "image ", ie. first six characters to obtain base64 encoded data
         message.remove(0, 6);
-
         QBuffer buffer;
         buffer.setData(QByteArray::fromBase64(message.toUtf8()));
         if(!_monitorImage.loadFromData(buffer.buffer(), "PNG")) {

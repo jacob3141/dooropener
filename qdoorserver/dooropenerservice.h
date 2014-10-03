@@ -28,7 +28,9 @@
 #include <QJsonObject>
 #include <QFileSystemWatcher>
 #include <QCamera>
-#include <QCameraImageCapture>
+
+// Own includes
+#include "cameraframegrabber.h"
 
 class DoorOpenerService : public QWebSocketServer
 {
@@ -52,9 +54,10 @@ public slots:
     /** Send a broadcast message to all clients. */
     void sendBroadcast(QString message);
 
-    void captureAndSendCameraFrame(int id, QVideoFrame videoFrame);
+    void backupCameraFrame(QImage image);
+    void sendCameraFrame();
     void cameraError(QCamera::Error error);
-    void cameraCaptureError(int id, QCameraImageCapture::Error error ,QString errorString);
+    //void cameraCaptureError(int id, QCameraImageCapture::Error error ,QString errorString);
     void cameraStatusChanged(QCamera::Status status);
 
     ///////////////////////////////////////////////////////
@@ -94,9 +97,10 @@ private:
     QTimer *_openDoorHoldTimer;
     QSerialPort *_serialPort;
 
+    QImage _frame;
     QCamera *_camera;
-    QCameraImageCapture *_cameraImageCapture;
-    QTimer *_cameraCaptureTimer;
+    CameraFrameGrabber *_cameraFrameGrabber;
+    QTimer *_frameSendTimer;
 
     QJsonObject _configuration;
     QStringList _potentialConfigurationFiles;
