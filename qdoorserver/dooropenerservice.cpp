@@ -24,6 +24,7 @@
 #include <QWebSocket>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QBuffer>
 
 // Own includes
 #include "dooropenerservice.h"
@@ -33,6 +34,24 @@ DoorOpenerService::DoorOpenerService(QObject *parent)
 {
     _serialPort = new QSerialPort();
     _serialPort->setBaudRate(9600);
+
+    _camera = new QCamera();
+    _camera->setCaptureMode(QCamera::CaptureViewfinder);
+    _cameraImageCapture = new QCameraImageCapture(_camera);
+    _cameraImageCapture->setCaptureDestination(QCameraImageCapture::CaptureToBuffer);
+    _cameraImageCapture->setBufferFormat(QVideoFrame::Format_Jpeg);
+
+    _cameraCaptureTimer = new QTimer();
+    _cameraCaptureTimer->setInterval(1000);
+    _cameraCaptureTimer->setSingleShot(true);
+
+    connect(_cameraImageCapture, SIGNAL(imageAvailable(int,QVideoFrame)), this, SLOT(captureAndSendCameraFrame(int,QVideoFrame)));
+    connect(_camera, SIGNAL(error(QCamera::Error)), this, SLOT(cameraError(QCamera::Error)));
+    connect(_cameraImageCapture, SIGNAL(error(int,QCameraImageCapture::Error,QString)), this, SLOT(cameraCaptureError(int,QCameraImageCapture::Error,QString)));
+    connect(_camera, SIGNAL(statusChanged(QCamera::Status)), this, SLOT(cameraStatusChanged(QCamera::Status)));
+    connect(_cameraCaptureTimer, SIGNAL(timeout()), _cameraImageCapture, SLOT(capture()));
+
+    _camera->start();
 
     // Time between device discoveries
     _deviceDiscoveryTimer = new QTimer();
@@ -134,6 +153,64 @@ void DoorOpenerService::sendBroadcast(QString message)
 {
     foreach(QWebSocket* webSocket, _connectedClients) {
         webSocket->sendTextMessage(message);
+    }
+}
+
+void DoorOpenerService::captureAndSendCameraFrame(int id, QVideoFrame videoFrame)
+{
+    Q_UNUSED(id);
+    if (!videoFrame.map(QAbstractVideoBuffer::ReadOnly)) {
+        return;
+    }
+    QImage image;
+    image.loadFromData((const uchar*)videoFrame.bits(), videoFrame.mappedBytes(), (const char*)"JPEG");
+    videoFrame.unmap();
+
+    QBuffer buffer;
+    image = image.scaled(320, 240);
+    image.save(&buffer, "PNG", 70);
+    QString base64EncodedImage = QString::fromUtf8(buffer.data().toBase64());
+    sendBroadcast(QString("image %1").arg(base64EncodedImage));
+
+    _cameraCaptureTimer->start();
+}
+
+void DoorOpenerService::cameraError(QCamera::Error error)
+{
+    switch(error) {
+    case QCamera::NoError: qDebug() << "Camera: OK"; break;
+    case QCamera::CameraError: qDebug() << "Camera: unknown error"; break;
+    case QCamera::InvalidRequestError: qDebug() << "Camera: invalid request"; break;
+    case QCamera::ServiceMissingError: qDebug() << "Camera: service missing"; break;
+    case QCamera::NotSupportedFeatureError: qDebug() << "Camera: not supported feature"; break;
+    }
+}
+
+void DoorOpenerService::cameraCaptureError(int id, QCameraImageCapture::Error error ,QString errorString)
+{
+    Q_UNUSED(id);
+    Q_UNUSED(error);
+    qDebug() << errorString;
+}
+
+void DoorOpenerService::cameraStatusChanged(QCamera::Status status)
+{
+    switch(status) {
+    case QCamera::UnavailableStatus: qDebug() << "Camera unavailable"; break;
+    case QCamera::UnloadedStatus: qDebug() << "Camera unloaded"; break;
+    case QCamera::LoadingStatus: qDebug() << "Camera loading"; break;
+    case QCamera::UnloadingStatus: qDebug() << "Camera unloading"; break;
+    case QCamera::LoadedStatus: qDebug() << "Camera loaded"; break;
+    case QCamera::StandbyStatus: qDebug() << "Camera standby"; break;
+    case QCamera::StartingStatus: qDebug() << "Camera starting"; break;
+    case QCamera::StoppingStatus: qDebug() << "Camera stopping"; break;
+    case QCamera::ActiveStatus: qDebug() << "Camera active"; break;
+    }
+
+    if(status == QCamera::ActiveStatus) {
+        qDebug() << "Starting camera capture";
+        _cameraCaptureTimer->start();
+        //_cameraImageCapture->capture();
     }
 }
 

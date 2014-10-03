@@ -104,7 +104,7 @@ void MainWindow::removeSplash()
 }
 
 void MainWindow::handleServerMessage(QString message) {
-    if(message == "doorRing") {
+    if(message.contains("doorRing")) {
         ui->labelConnectionState->setText("Ring ring..");
         if(!ui->autoPushButton->isChecked()) {
             _mediaPlayer->setMedia(QUrl("qrc:///images/doorbell.m4a"));
@@ -115,17 +115,28 @@ void MainWindow::handleServerMessage(QString message) {
             on_openPushButton_clicked();
         }
     }
-    if(message.startsWith("willOpenDoor")) {
+    if(message.contains("willOpenDoor")) {
         ui->labelConnectionState->setText("Opening door.. hang on..");
     }
-    if(message == "didOpenDoor") {
+    if(message.contains("didOpenDoor")) {
         ui->labelConnectionState->setText("Yo mate, it's done.");
+    }
+    if(message.startsWith("image")) {
+        // Remove "image ", ie. first six characters to obtain base64 encoded data
+        message.remove(0, 6);
+
+        QBuffer buffer;
+        buffer.setData(QByteArray::fromBase64(message.toUtf8()));
+        if(!_monitorImage.loadFromData(buffer.buffer(), "PNG")) {
+            qDebug() << "Failed to load image from data";
+        }
+        ui->imageLabel->setPixmap(QPixmap::fromImage(_monitorImage));
     }
 }
 
 void MainWindow::tryReconnect() {
     if(!_connected) {
         _webSocket->close();
-        _webSocket->open(QUrl("ws://localhost:1337"));
+        _webSocket->open(QUrl("ws://192.168.0.108:1337"));
     }
 }

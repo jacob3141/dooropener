@@ -61,6 +61,7 @@ private:
     QMediaPlayer *_mediaPlayer;
     QTimer *_timer;
     QTimer *_splashTimer;
+    QImage _monitorImage;
     bool _connected;
 };
 

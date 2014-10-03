@@ -27,6 +27,8 @@
 #include <QList>
 #include <QJsonObject>
 #include <QFileSystemWatcher>
+#include <QCamera>
+#include <QCameraImageCapture>
 
 class DoorOpenerService : public QWebSocketServer
 {
@@ -49,6 +51,11 @@ public slots:
     void clientErrorOccurred(QAbstractSocket::SocketError error);
     /** Send a broadcast message to all clients. */
     void sendBroadcast(QString message);
+
+    void captureAndSendCameraFrame(int id, QVideoFrame videoFrame);
+    void cameraError(QCamera::Error error);
+    void cameraCaptureError(int id, QCameraImageCapture::Error error ,QString errorString);
+    void cameraStatusChanged(QCamera::Status status);
 
     ///////////////////////////////////////////////////////
     // Serial interface
@@ -86,6 +93,10 @@ private:
     QTimer *_deviceDiscoveryTimer;
     QTimer *_openDoorHoldTimer;
     QSerialPort *_serialPort;
+
+    QCamera *_camera;
+    QCameraImageCapture *_cameraImageCapture;
+    QTimer *_cameraCaptureTimer;
 
     QJsonObject _configuration;
     QStringList _potentialConfigurationFiles;

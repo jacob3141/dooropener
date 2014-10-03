@@ -17,7 +17,7 @@
 # If not, see <http:www.gnu.org/licenses/>.
 #
 
-QT       += core websockets serialport
+QT       += core websockets serialport multimedia
 
 QT       -= gui
 
