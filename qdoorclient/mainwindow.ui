@@ -268,6 +268,18 @@ font-size: 20px;
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="leftMargin">
+            <number>20</number>
+           </property>
+           <property name="topMargin">
+            <number>20</number>
+           </property>
+           <property name="rightMargin">
+            <number>20</number>
+           </property>
+           <property name="bottomMargin">
+            <number>20</number>
+           </property>
            <item>
             <widget class="QLabel" name="imageLabel">
              <property name="minimumSize">
@@ -283,7 +295,7 @@ font-size: 20px;
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">background: black; color: white; font-size: 32px;</string>
+              <string notr="true">background: black; color: white; font-size: 32px; border-radius: 10px;</string>
              </property>
              <property name="text">
               <string>Initializing video stream..</string>
@@ -293,6 +305,25 @@ font-size: 20px;
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imageInfoLabel">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-size: 24px;</string>
+             </property>
+             <property name="text">
+              <string>No frame information available</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -307,7 +338,7 @@ font-size: 20px;
              <property name="styleSheet">
               <string notr="true">QPushButton {
 
-font-size: 48px;
+font-size: 32px;
 }</string>
              </property>
              <property name="text">
@@ -320,8 +351,8 @@ font-size: 48px;
              </property>
              <property name="iconSize">
               <size>
-               <width>108</width>
-               <height>108</height>
+               <width>80</width>
+               <height>80</height>
               </size>
              </property>
              <property name="checkable">
@@ -340,7 +371,7 @@ font-size: 48px;
              <property name="styleSheet">
               <string notr="true">QPushButton {
 
-font-size: 48px;
+font-size: 32px;
 }</string>
              </property>
              <property name="text">
@@ -353,8 +384,8 @@ font-size: 48px;
              </property>
              <property name="iconSize">
               <size>
-               <width>108</width>
-               <height>108</height>
+               <width>80</width>
+               <height>80</height>
               </size>
              </property>
             </widget>

@@ -36,13 +36,13 @@ DoorOpenerService::DoorOpenerService(QObject *parent)
     _serialPort->setBaudRate(9600);
 
     _camera = new QCamera();
-    _camera->setCaptureMode(QCamera::CaptureViewfinder);
+    _camera->setCaptureMode(QCamera::CaptureStillImage);
     _cameraImageCapture = new QCameraImageCapture(_camera);
     _cameraImageCapture->setCaptureDestination(QCameraImageCapture::CaptureToBuffer);
     _cameraImageCapture->setBufferFormat(QVideoFrame::Format_Jpeg);
 
     _cameraCaptureTimer = new QTimer();
-    _cameraCaptureTimer->setInterval(1000);
+    _cameraCaptureTimer->setInterval(200);
     _cameraCaptureTimer->setSingleShot(true);
 
     connect(_cameraImageCapture, SIGNAL(imageAvailable(int,QVideoFrame)), this, SLOT(captureAndSendCameraFrame(int,QVideoFrame)));
@@ -167,7 +167,7 @@ void DoorOpenerService::captureAndSendCameraFrame(int id, QVideoFrame videoFrame
     videoFrame.unmap();
 
     QBuffer buffer;
-    image = image.scaled(320, 240);
+    image = image.scaled(160, 120);
     image.save(&buffer, "PNG", 70);
     QString base64EncodedImage = QString::fromUtf8(buffer.data().toBase64());
     sendBroadcast(QString("image %1").arg(base64EncodedImage));

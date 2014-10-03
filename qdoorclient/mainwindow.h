@@ -50,6 +50,7 @@ public slots:
     void on_settingsBackPushButton_clicked();
     void on_saveSettingsPushButton_clicked();
 
+    void slideFinished();
     void connectedToServer();
     void disconnectedFromServer();
     void handleServerMessage(QString message);
@@ -63,6 +64,7 @@ private:
     QTimer *_splashTimer;
     QImage _monitorImage;
     bool _connected;
+    bool _dontUpdateVideoFrame;
 };
 
 #endif // MAINWINDOW_H
