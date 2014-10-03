@@ -34,13 +34,13 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="SlidingStackedWidget" name="stackedWidget">
       <property name="styleSheet">
        <string notr="true">background-color: white;
 color: black;</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="splashPage">
        <property name="styleSheet">
@@ -220,7 +220,7 @@ font-size: 32px;
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="settingsPushButton">
              <property name="minimumSize">
               <size>
                <width>128</width>
@@ -269,7 +269,7 @@ font-size: 20px;
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QPushButton" name="pushButtonAuto">
+            <widget class="QPushButton" name="autoPushButton">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -302,7 +302,7 @@ font-size: 48px;
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButtonOpen">
+            <widget class="QPushButton" name="openPushButton">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -371,6 +371,11 @@ font-size: 32px;
        </layout>
       </widget>
       <widget class="QWidget" name="settingsPage">
+       <property name="styleSheet">
+        <string notr="true">QFrame {
+	border: none;
+}</string>
+       </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <property name="spacing">
          <number>0</number>
@@ -414,43 +419,91 @@ color: white;
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <widget class="QLabel" name="label_3">
-           <property name="geometry">
-            <rect>
-             <x>1</x>
-             <y>1</y>
-             <width>231</width>
-             <height>128</height>
-            </rect>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <property name="spacing">
+            <number>0</number>
            </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>128</height>
-            </size>
+           <property name="leftMargin">
+            <number>0</number>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>128</height>
-            </size>
+           <property name="topMargin">
+            <number>0</number>
            </property>
-           <property name="font">
-            <font>
-             <pointsize>-1</pointsize>
-            </font>
+           <property name="rightMargin">
+            <number>0</number>
            </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel {
-padding-left: 24px;
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="settingsBackPushButton">
+             <property name="minimumSize">
+              <size>
+               <width>128</width>
+               <height>128</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>128</width>
+               <height>128</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background: rgba(0, 0, 0, 0.0);
+color: white;
+border: none;
+font-size: 20px;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/images/arrowback.png</normaloff>:/images/arrowback.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>128</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>128</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+
 font-size: 32px;
 }
 </string>
-           </property>
-           <property name="text">
-            <string>Settings</string>
-           </property>
-          </widget>
+             </property>
+             <property name="text">
+              <string>Settings</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
@@ -471,7 +524,7 @@ font-size: 32px;
            <number>10</number>
           </property>
           <item row="1" column="0">
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="serverIPLineEdit">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -488,7 +541,7 @@ font-size: 32px;
              <string notr="true">font-size: 32px; padding: 10px;</string>
             </property>
             <property name="text">
-             <string>192.168.100.30:8080</string>
+             <string>localhost:1337</string>
             </property>
             <property name="clearButtonEnabled">
              <bool>false</bool>
@@ -531,7 +584,7 @@ font-size: 32px;
            </spacer>
           </item>
           <item row="2" column="0">
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="saveSettingsPushButton">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -591,6 +644,14 @@ color: white;
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header location="global">slidingstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

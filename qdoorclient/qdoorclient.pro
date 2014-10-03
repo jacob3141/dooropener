@@ -26,9 +26,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    slidingstackedwidget.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    slidingstackedwidget.h
 
 FORMS    += mainwindow.ui
 

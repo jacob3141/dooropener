@@ -31,7 +31,7 @@ class MainWindow;
 }
 
 /**
- * @brief The MainWindow class
+ * @author Jacob Dawid ( jacob.dawid@omg-it.works )
  */
 class MainWindow : public QMainWindow
 {
@@ -44,7 +44,11 @@ public:
 public slots:
     void removeSplash();
 
-    void on_pushButtonOpen_clicked();
+    void on_openPushButton_clicked();
+    void on_settingsPushButton_clicked();
+    void on_serverIPLineEdit_returnPressed();
+    void on_settingsBackPushButton_clicked();
+    void on_saveSettingsPushButton_clicked();
 
     void connectedToServer();
     void disconnectedFromServer();

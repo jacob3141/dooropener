@@ -5,5 +5,6 @@
         <file>home.png</file>
         <file>doorlogo.png</file>
         <file>automatic.png</file>
+        <file>arrowback.png</file>
     </qresource>
 </RCC>

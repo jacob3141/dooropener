@@ -25,6 +25,10 @@
 #include <QUrl>
 #include <QMediaPlayer>
 
+const int splashScreenIndex     = 0;
+const int mainScreenIndex       = 1;
+const int settingsScreenIndex   = 2;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -69,25 +73,46 @@ void MainWindow::disconnectedFromServer()
     _connected = false;
 }
 
-void MainWindow::on_pushButtonOpen_clicked()
+void MainWindow::on_openPushButton_clicked()
 {
     _webSocket->sendTextMessage("openDoor");
 }
 
+void MainWindow::on_settingsPushButton_clicked()
+{
+    ui->stackedWidget->slideInAtIndex(settingsScreenIndex, SlidingStackedWidget::RightToLeft);
+}
+
+void MainWindow::on_serverIPLineEdit_returnPressed()
+{
+    on_saveSettingsPushButton_clicked();
+}
+
+void MainWindow::on_settingsBackPushButton_clicked()
+{
+    ui->stackedWidget->slideInAtIndex(mainScreenIndex, SlidingStackedWidget::LeftToRight);
+}
+
+void MainWindow::on_saveSettingsPushButton_clicked()
+{
+    ui->stackedWidget->slideInAtIndex(mainScreenIndex, SlidingStackedWidget::LeftToRight);
+}
+
 void MainWindow::removeSplash()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->slideInAtIndex(mainScreenIndex, SlidingStackedWidget::RightToLeft);
 }
 
 void MainWindow::handleServerMessage(QString message) {
     if(message == "doorRing") {
         ui->labelConnectionState->setText("Ring ring..");
-        if(!ui->pushButtonAuto->isChecked()) {
+        if(!ui->autoPushButton->isChecked()) {
             _mediaPlayer->setMedia(QUrl("qrc:///images/doorbell.m4a"));
             _mediaPlayer->setVolume(95);
             _mediaPlayer->play();
         } else {
-            on_pushButtonOpen_clicked();
+            // Simulate pushing the open button
+            on_openPushButton_clicked();
         }
     }
     if(message.startsWith("willOpenDoor")) {
