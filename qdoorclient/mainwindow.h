@@ -25,6 +25,7 @@
 #include <QWebSocket>
 #include <QMediaPlayer>
 #include <QTimer>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -57,12 +58,15 @@ public slots:
     void tryReconnect();
 
 private:
+    void disconnectFromServer();
+
     Ui::MainWindow *ui;
     QWebSocket *_webSocket;
     QMediaPlayer *_mediaPlayer;
-    QTimer *_timer;
+    QTimer *_reconnectTimer;
     QTimer *_splashTimer;
     QImage _monitorImage;
+    QSettings *_settings;
     bool _connected;
     bool _dontUpdateVideoFrame;
 };

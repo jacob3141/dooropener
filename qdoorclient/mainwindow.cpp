@@ -25,6 +25,7 @@
 #include <QUrl>
 #include <QMediaPlayer>
 #include <QDateTime>
+#include <QStandardPaths>
 
 const int splashScreenIndex     = 0;
 const int mainScreenIndex       = 1;
@@ -37,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     _webSocket = new QWebSocket();
     _mediaPlayer = new QMediaPlayer();
-    _timer = new QTimer();
+    _reconnectTimer = new QTimer();
     _splashTimer = new QTimer();
     _connected = false;
     _dontUpdateVideoFrame = false;
@@ -45,19 +46,22 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_webSocket, SIGNAL(connected()), this, SLOT(connectedToServer()));
     connect(_webSocket, SIGNAL(disconnected()), this, SLOT(disconnectedFromServer()));
     connect(_webSocket, SIGNAL(textMessageReceived(QString)), this, SLOT(handleServerMessage(QString)));
-    connect(_timer, SIGNAL(timeout()), this, SLOT(tryReconnect()));
+    connect(_reconnectTimer, SIGNAL(timeout()), this, SLOT(tryReconnect()));
 
     connect(_splashTimer, SIGNAL(timeout()), this, SLOT(removeSplash()));
 
     connect(ui->stackedWidget, SIGNAL(animationFinished()), this, SLOT(slideFinished()));
 
-    _timer->setInterval(1000);
-    _timer->setSingleShot(false);
-    _timer->start();
+    _reconnectTimer->setInterval(1000);
+    _reconnectTimer->setSingleShot(false);
+    _reconnectTimer->start();
 
     _splashTimer->setInterval(1000);
     _splashTimer->setSingleShot(true);
     _splashTimer->start();
+
+    QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+    _settings = new QSettings(path + "/dooropener.conf", QSettings::IniFormat) ;
 }
 
 MainWindow::~MainWindow()
@@ -93,6 +97,7 @@ void MainWindow::on_settingsPushButton_clicked()
 {
     _dontUpdateVideoFrame = true;
     ui->stackedWidget->slideInAtIndex(settingsScreenIndex, SlidingStackedWidget::RightToLeft);
+    ui->serverIPLineEdit->setText(_settings->value("server").toString());
 }
 
 void MainWindow::on_serverIPLineEdit_returnPressed()
@@ -110,6 +115,9 @@ void MainWindow::on_saveSettingsPushButton_clicked()
 {
     _dontUpdateVideoFrame = true;
     ui->stackedWidget->slideInAtIndex(mainScreenIndex, SlidingStackedWidget::LeftToRight);
+    _settings->setValue("server", ui->serverIPLineEdit->text());
+    _settings->sync();
+    disconnectFromServer();
 }
 
 void MainWindow::removeSplash()
@@ -155,6 +163,12 @@ void MainWindow::handleServerMessage(QString message) {
 void MainWindow::tryReconnect() {
     if(!_connected) {
         _webSocket->close();
-        _webSocket->open(QUrl("ws://192.168.0.108:1337"));
+        _webSocket->open(QUrl("ws://" + _settings->value("server").toString()));
     }
+}
+
+void MainWindow::disconnectFromServer()
+{
+    _connected = false;
+    _reconnectTimer->start();
 }
