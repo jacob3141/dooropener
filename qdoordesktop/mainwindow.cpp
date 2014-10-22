@@ -65,13 +65,15 @@ MainWindow::MainWindow(QWidget *parent) :
     _reconnectTimer->start();
 
     _hideWindowTimer = new QTimer();
-    _hideWindowTimer->setInterval(100);
+    _hideWindowTimer->setInterval(1000);
     _hideWindowTimer->setSingleShot(false);
     connect(_hideWindowTimer, SIGNAL(timeout()), this, SLOT(decrementHideCounter()));
     _hideWindowTimer->start();
 
     _settings = new QSettings("net.cybercatalyst", "dooropener");
     ui->pushButtonMute->setChecked(_settings->value("muted").toBool());
+    ui->pushButtonOpen->setEnabled(false);
+    ui->pushButtonOpen->setText(tr("Connect"));
 }
 
 MainWindow::~MainWindow()
@@ -81,13 +83,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::connectedToServer()
 {
+    ui->pushButtonOpen->setEnabled(true);
+    ui->pushButtonOpen->setText(tr("Open"));
     ui->labelConnectionState->setStyleSheet("background-color: rgb(0, 250, 0);");
     _connected = true;
 }
 
 void MainWindow::disconnectedFromServer()
 {
-    ui->labelConnectionState->setStyleSheet("background-color: rgb(70, 70, 0);");
+    ui->labelConnectionState->setStyleSheet("background-color: rgb(200, 0, 0);");
     _connected = false;
 }
 
@@ -104,13 +108,13 @@ void MainWindow::on_pushButtonMute_clicked(bool on)
 
 void MainWindow::makeVisible()
 {
-    ui->progressBar->setValue(100);
+    ui->progressBar->setValue(10);
     show();
 }
 
 void MainWindow::decrementHideCounter()
 {
-    if(isVisible()) {
+    if(isVisible() && _connected) {
         ui->progressBar->setValue(ui->progressBar->value() - 1);
         if(ui->progressBar->value() <= 0) {
             hide();
@@ -131,7 +135,7 @@ void MainWindow::handleServerMessage(QString message) {
     if(message.contains("willOpenDoor")) {
         ui->labelConnectionState->setStyleSheet("background-color: rgb(255, 255, 255);");
         ui->pushButtonOpen->setEnabled(false);
-        ui->pushButtonOpen->setText(tr("Opening.."));
+        ui->pushButtonOpen->setText(tr("Opening"));
     }
     if(message.contains("didOpenDoor")) {
         ui->labelConnectionState->setStyleSheet("background-color: rgb(0, 250, 0);");
@@ -142,6 +146,9 @@ void MainWindow::handleServerMessage(QString message) {
 
 void MainWindow::tryReconnect() {
     if(!_connected) {
+        makeVisible();
+        ui->pushButtonOpen->setEnabled(false);
+        ui->pushButtonOpen->setText(tr("Reconnect"));
         _webSocket->close();
         _webSocket->open(QUrl("ws://" + _settings->value("server").toString()));
     }
