@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>appicon.png</file>
+        <file>doorbell.m4a</file>
+        <file>volume-mute.png</file>
+    </qresource>
+</RCC>

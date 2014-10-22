@@ -17,16 +17,23 @@
 # If not, see <http:www.gnu.org/licenses/>.
 #
 
-TEMPLATE = subdirs
-SUBDIRS = qdoorserver qdoorclient arduino \
-    qdoordesktop
+QT       += core gui websockets multimedia
 
-qdoorserver.subdir = qdoorserver
-qdoorserver.depends =
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-qdoorclient.subdir = qdoorclient
-qdoorclient.depends =
+TARGET = qdoordesktop
+TEMPLATE = app
 
-arduino.subdir = arduino
-arduino.depends =
 
+SOURCES += main.cpp\
+        mainwindow.cpp \
+    settingsdialog.cpp
+
+HEADERS  += mainwindow.h \
+    settingsdialog.h
+
+FORMS    += mainwindow.ui \
+    settingsdialog.ui
+
+RESOURCES += \
+    resources.qrc
