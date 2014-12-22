@@ -10,6 +10,7 @@
 		2B212BAA1A486BFC0099F68B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B212BA91A486BFC0099F68B /* MainMenu.xib */; };
 		2B6796E71A486F4C004A196A /* StarscreamOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; };
 		2B6796E91A487070004A196A /* StarscreamOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B6796EC1A487374004A196A /* StatusBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6796EB1A487374004A196A /* StatusBarItemController.swift */; };
 		2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */; };
 		2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7803A31A483C1A0011D9A5 /* Images.xcassets */; };
 		2B7803CF1A483FAB0011D9A5 /* DOAROSXKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7803CE1A483FAB0011D9A5 /* DOAROSXKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -107,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		2B212BA91A486BFC0099F68B /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		2B6796EB1A487374004A196A /* StatusBarItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarItemController.swift; sourceTree = "<group>"; };
 		2B78039A1A483C1A0011D9A5 /* DOAROSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOAROSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78039E1A483C1A0011D9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B6796EA1A48734A004A196A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B6796EB1A487374004A196A /* StatusBarItemController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		2B7803911A483C1A0011D9A5 = {
 			isa = PBXGroup;
 			children = (
@@ -211,9 +221,10 @@
 		2B7803BC1A483E140011D9A5 /* Main App */ = {
 			isa = PBXGroup;
 			children = (
+				2B6796EA1A48734A004A196A /* Controllers */,
 				2B7803BD1A483E480011D9A5 /* Delegates */,
-				2B7803BF1A483E960011D9A5 /* XIBs */,
 				2B78039D1A483C1A0011D9A5 /* Supporting Files */,
+				2B7803BF1A483E960011D9A5 /* XIBs */,
 			);
 			path = "Main App";
 			sourceTree = "<group>";
@@ -549,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6796EC1A487374004A196A /* StatusBarItemController.swift in Sources */,
 				2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
