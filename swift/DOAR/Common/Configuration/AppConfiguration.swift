@@ -19,10 +19,12 @@ public struct AppConfiguration {
         static let openDoor = "openDoor"
         static let doorRing = "doorRing"
         static let willOpenDoor = "willOpenDoor"
+        static let didOpenDoor = "didOpenDoor"
     }
     
     public struct Notifications {
-        static let ConnectionStateDidChangeNotification = "ConnectionStateDidChangeNotification"
-        static let ConnectionDidReceiveDoorRingNotification = "ConnectionDidReceiveDoorRingNotification"
+        public static let ConnectionStateDidChangeNotification = "ConnectionStateDidChangeNotification"
+        public static let ConnectionDidReceiveDoorRingNotification = "ConnectionDidReceiveDoorRingNotification"
+        public static let ConnectionDidReceiveOpenDoorNotification = "ConnectionDidReceiveOpenDoorNotification"
     }
 }
