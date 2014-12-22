@@ -9,13 +9,13 @@
 import Foundation
 
 public struct AppConfiguration {
-    internal struct WebSocketURL {
+    struct WebSocketURL {
         static let proto = "ws"
         static let host = "192.168.100.30:8080"
         static let path = "/"
     }
     
-    internal struct ServerCommands {
+    struct ServerCommands {
         static let openDoor = "openDoor"
         static let doorRing = "doorRing"
         static let willOpenDoor = "willOpenDoor"

@@ -16,7 +16,7 @@ class StatusBarItemController: NSObject {
         case Opening
     }
     
-    internal let connectionController = ConnectionController()
+    let connectionController = ConnectionController()
     private let statusItem: NSStatusItem
     private var reconnectTimer: NSTimer?
     private var state = OpenDoorState.Idle
@@ -57,15 +57,7 @@ class StatusBarItemController: NSObject {
         }
     }
     
-    private func createReconnectTimer() {
-        if self.reconnectTimer == nil {
-            self.reconnectTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "reconnect:", userInfo: nil, repeats: false)
-        }
-    }
-    
-    internal func reconnect(timer: NSTimer) {
-        self.connectionController.connect()
-    }
+    // MARK: - Helpers
     
     private func configureStatusItem() {
         let menu = NSMenu()
@@ -79,6 +71,16 @@ class StatusBarItemController: NSObject {
         menu.addItem(quitMenuItem)
         
         self.statusItem.menu = menu
+    }
+    
+    private func createReconnectTimer() {
+        if self.reconnectTimer == nil {
+            self.reconnectTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "reconnect:", userInfo: nil, repeats: false)
+        }
+    }
+    
+    func reconnect(timer: NSTimer) {
+        self.connectionController.connect()
     }
     
     // MARK: - Actions

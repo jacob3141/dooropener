@@ -18,7 +18,16 @@ class ViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var ringImageView: UIImageView!
     
-    var audioPlayer: AVAudioPlayer?
+    let audioPlayer: AVAudioPlayer = {
+        let url = NSBundle.mainBundle().URLForResource("doorbell", withExtension: "m4a")
+        
+        var error: NSError?
+        let audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+        audioPlayer.prepareToPlay()
+        
+        return audioPlayer
+        }()
+    
     var connectionController = ConnectionController()
     var connectionTimer: NSTimer?
     
@@ -87,10 +96,7 @@ class ViewController: UIViewController {
         let url = NSURL(string: path!)
         
         var error:NSError?
-        self.audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
-        self.audioPlayer!.numberOfLoops = 3
-        self.audioPlayer!.prepareToPlay()
-        self.audioPlayer!.play()
+        self.audioPlayer.play()
         
         startAnimatingRing()
     }

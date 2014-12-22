@@ -15,10 +15,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveDoorRing:",
-                name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification,
-                object: nil)
+            name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification,
+            object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(AppConfiguration.Notifications.ConnectionDidReceiveWillOpenDoorNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
+            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
+        }
     }
-
+    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
@@ -28,7 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func openDoor () {
-        self.statusBarItemController.connectionController.openDoor()
+        if self.statusBarItemController.connectionController.state == .Open {
+            self.statusBarItemController.connectionController.openDoor()
+        }
     }
     
     // MARK: - Actions
@@ -46,6 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(userNotification)
     }
-
+    
 }
 

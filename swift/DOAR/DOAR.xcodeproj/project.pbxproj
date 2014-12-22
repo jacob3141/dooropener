@@ -14,6 +14,15 @@
 		2B6796EF1A488424004A196A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F11A488424004A196A /* Localizable.strings */; };
 		2B6796F61A4888E3004A196A /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F51A4888E3004A196A /* doorbell.m4a */; };
 		2B6796F71A4888E3004A196A /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F51A4888E3004A196A /* doorbell.m4a */; };
+		2B67970A1A488C59004A196A /* DOAR WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797091A488C59004A196A /* DOAR WatchKit App.app */; };
+		2B6797171A488C59004A196A /* DOAR WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2B6796FC1A488C58004A196A /* DOAR WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B6797291A488DCB004A196A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797281A488DCB004A196A /* Images.xcassets */; };
+		2B67972E1A488E0B004A196A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B67972D1A488E0B004A196A /* Images.xcassets */; };
+		2B6797321A488E23004A196A /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6797301A488E23004A196A /* InterfaceController.swift */; };
+		2B6797341A4895AA004A196A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797361A4895AA004A196A /* Interface.storyboard */; };
+		2B6797381A489767004A196A /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; };
+		2B67973A1A48976C004A196A /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B67973D1A4897ED004A196A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B67973C1A4897ED004A196A /* Localizable.strings */; };
 		2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */; };
 		2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7803A31A483C1A0011D9A5 /* Images.xcassets */; };
 		2B7803CF1A483FAB0011D9A5 /* DOAROSXKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7803CE1A483FAB0011D9A5 /* DOAROSXKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +51,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2B67970B1A488C59004A196A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B7803921A483C1A0011D9A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B6797081A488C59004A196A;
+			remoteInfo = "DOAR WatchKit App";
+		};
+		2B6797151A488C59004A196A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B7803921A483C1A0011D9A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B6796FB1A488C58004A196A;
+			remoteInfo = "DOAR WatchKit Extension";
+		};
 		2B7803DF1A483FAB0011D9A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2B7803921A483C1A0011D9A5 /* Project object */;
@@ -67,6 +90,28 @@
 			files = (
 				2B6796E91A487070004A196A /* StarscreamOSX.framework in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67971E1A488C59004A196A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2B6797171A488C59004A196A /* DOAR WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67973B1A48976C004A196A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B67973A1A48976C004A196A /* Starscream.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2B7803E61A483FAB0011D9A5 /* Embed Frameworks */ = {
@@ -128,6 +173,16 @@
 		2B6796EB1A487374004A196A /* StatusBarItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarItemController.swift; sourceTree = "<group>"; };
 		2B6796F01A488424004A196A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B6796F51A4888E3004A196A /* doorbell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.m4a; sourceTree = "<group>"; };
+		2B6796FC1A488C58004A196A /* DOAR WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DOAR WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B6797091A488C59004A196A /* DOAR WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DOAR WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B6797271A488DC4004A196A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B6797281A488DCB004A196A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2B67972C1A488E00004A196A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B67972D1A488E0B004A196A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2B67972F1A488E1C004A196A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		2B6797301A488E23004A196A /* InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		2B6797351A4895AA004A196A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		2B67973C1A4897ED004A196A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2B78039A1A483C1A0011D9A5 /* DOAROSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOAROSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78039E1A483C1A0011D9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +210,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2B6796F91A488C58004A196A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B6797381A489767004A196A /* Starscream.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B7803971A483C1A0011D9A5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,11 +273,75 @@
 			path = "Shared Resources";
 			sourceTree = "<group>";
 		};
+		2B67971F1A488D15004A196A /* DOAR Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				2B6797211A488D25004A196A /* Watch App */,
+				2B6797201A488D22004A196A /* Watch Extension */,
+			);
+			path = "DOAR Watch App";
+			sourceTree = "<group>";
+		};
+		2B6797201A488D22004A196A /* Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2B6797241A488D3F004A196A /* Controllers */,
+				2B6797251A488D49004A196A /* Supporting Files */,
+			);
+			path = "Watch Extension";
+			sourceTree = "<group>";
+		};
+		2B6797211A488D25004A196A /* Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				2B6797221A488D30004A196A /* Storyboards */,
+				2B6797231A488D36004A196A /* Supporting Files */,
+			);
+			path = "Watch App";
+			sourceTree = "<group>";
+		};
+		2B6797221A488D30004A196A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2B6797361A4895AA004A196A /* Interface.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2B6797231A488D36004A196A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B6797281A488DCB004A196A /* Images.xcassets */,
+				2B6797271A488DC4004A196A /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B6797241A488D3F004A196A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B6797301A488E23004A196A /* InterfaceController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2B6797251A488D49004A196A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B67972D1A488E0B004A196A /* Images.xcassets */,
+				2B67972C1A488E00004A196A /* Info.plist */,
+				2B67972F1A488E1C004A196A /* PushNotificationPayload.apns */,
+				2B67973C1A4897ED004A196A /* Localizable.strings */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2B7803911A483C1A0011D9A5 = {
 			isa = PBXGroup;
 			children = (
 				2B7803EA1A4840F40011D9A5 /* DOAR iOS App */,
 				2B78039C1A483C1A0011D9A5 /* DOAR OS X App */,
+				2B67971F1A488D15004A196A /* DOAR Watch App */,
 				2B7803ED1A4841290011D9A5 /* Shared DOARKit Framework Code */,
 				2B6796F41A4888C9004A196A /* Shared Resources */,
 				F59483E51A48484900AE331E /* Carthage */,
@@ -229,6 +356,8 @@
 				2B7803CA1A483FAB0011D9A5 /* DOARKitOSX.framework */,
 				2B7803F21A48416D0011D9A5 /* DOARiOS.app */,
 				2B7804291A4842100011D9A5 /* DOARKitiOS.framework */,
+				2B6796FC1A488C58004A196A /* DOAR WatchKit Extension.appex */,
+				2B6797091A488C59004A196A /* DOAR WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -437,6 +566,40 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		2B6796FB1A488C58004A196A /* DOAR WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B67971B1A488C59004A196A /* Build configuration list for PBXNativeTarget "DOAR WatchKit Extension" */;
+			buildPhases = (
+				2B6796F81A488C58004A196A /* Sources */,
+				2B6796F91A488C58004A196A /* Frameworks */,
+				2B6796FA1A488C58004A196A /* Resources */,
+				2B67973B1A48976C004A196A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B67970C1A488C59004A196A /* PBXTargetDependency */,
+			);
+			name = "DOAR WatchKit Extension";
+			productName = "DOAR WatchKit Extension";
+			productReference = 2B6796FC1A488C58004A196A /* DOAR WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		2B6797081A488C59004A196A /* DOAR WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B6797181A488C59004A196A /* Build configuration list for PBXNativeTarget "DOAR WatchKit App" */;
+			buildPhases = (
+				2B6797071A488C59004A196A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DOAR WatchKit App";
+			productName = "DOAR WatchKit App";
+			productReference = 2B6797091A488C59004A196A /* DOAR WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		2B7803991A483C1A0011D9A5 /* DOAROSX */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B7803B61A483C1A0011D9A5 /* Build configuration list for PBXNativeTarget "DOAROSX" */;
@@ -485,11 +648,13 @@
 				2B7803EF1A48416D0011D9A5 /* Frameworks */,
 				2B7803F01A48416D0011D9A5 /* Resources */,
 				2B7804451A4842110011D9A5 /* Embed Frameworks */,
+				2B67971E1A488C59004A196A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				2B78043F1A4842110011D9A5 /* PBXTargetDependency */,
+				2B6797161A488C59004A196A /* PBXTargetDependency */,
 			);
 			name = DOARiOS;
 			productName = DOAR;
@@ -524,6 +689,12 @@
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = evolved.io;
 				TargetAttributes = {
+					2B6796FB1A488C58004A196A = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					2B6797081A488C59004A196A = {
+						CreatedOnToolsVersion = 6.2;
+					};
 					2B7803991A483C1A0011D9A5 = {
 						CreatedOnToolsVersion = 6.2;
 						SystemCapabilities = {
@@ -560,11 +731,32 @@
 				2B7803C91A483FAB0011D9A5 /* DOARKitOSX */,
 				2B7803F11A48416D0011D9A5 /* DOARiOS */,
 				2B7804281A4842100011D9A5 /* DOARKitiOS */,
+				2B6796FB1A488C58004A196A /* DOAR WatchKit Extension */,
+				2B6797081A488C59004A196A /* DOAR WatchKit App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2B6796FA1A488C58004A196A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B67972E1A488E0B004A196A /* Images.xcassets in Resources */,
+				2B67973D1A4897ED004A196A /* Localizable.strings in Resources */,
+				2B67970A1A488C59004A196A /* DOAR WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B6797071A488C59004A196A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B6797341A4895AA004A196A /* Interface.storyboard in Resources */,
+				2B6797291A488DCB004A196A /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B7803981A483C1A0011D9A5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -604,6 +796,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2B6796F81A488C58004A196A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B6797321A488E23004A196A /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B7803961A483C1A0011D9A5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -643,6 +843,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2B67970C1A488C59004A196A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B6797081A488C59004A196A /* DOAR WatchKit App */;
+			targetProxy = 2B67970B1A488C59004A196A /* PBXContainerItemProxy */;
+		};
+		2B6797161A488C59004A196A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B6796FB1A488C58004A196A /* DOAR WatchKit Extension */;
+			targetProxy = 2B6797151A488C59004A196A /* PBXContainerItemProxy */;
+		};
 		2B7803E01A483FAB0011D9A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2B7803C91A483FAB0011D9A5 /* DOARKitOSX */;
@@ -664,9 +874,95 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		2B6797361A4895AA004A196A /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B6797351A4895AA004A196A /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2B6797191A488C59004A196A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = DOAR_WatchKit_Extension;
+				INFOPLIST_FILE = "$(SRCROOT)/DOAR Watch App/Watch App/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		2B67971A1A488C59004A196A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				IBSC_MODULE = DOAR_WatchKit_Extension;
+				INFOPLIST_FILE = "$(SRCROOT)/DOAR Watch App/Watch App/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B67971C1A488C59004A196A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/DOAR Watch App/Watch Extension/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2B67971D1A488C59004A196A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/DOAR Watch App/Watch Extension/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		2B7803B41A483C1A0011D9A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -783,6 +1079,7 @@
 		2B7803E41A483FAB0011D9A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -813,6 +1110,7 @@
 		2B7803E51A483FAB0011D9A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -883,6 +1181,7 @@
 		2B7804431A4842110011D9A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -917,6 +1216,7 @@
 		2B7804441A4842110011D9A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -947,6 +1247,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2B6797181A488C59004A196A /* Build configuration list for PBXNativeTarget "DOAR WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B6797191A488C59004A196A /* Debug */,
+				2B67971A1A488C59004A196A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B67971B1A488C59004A196A /* Build configuration list for PBXNativeTarget "DOAR WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B67971C1A488C59004A196A /* Debug */,
+				2B67971D1A488C59004A196A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2B7803951A483C1A0011D9A5 /* Build configuration list for PBXProject "DOAR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
