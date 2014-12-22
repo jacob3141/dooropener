@@ -506,6 +506,7 @@
 				2B6796F91A488C58004A196A /* Frameworks */,
 				2B6796FA1A488C58004A196A /* Resources */,
 				2B67973B1A48976C004A196A /* Embed Frameworks */,
+				2BB04DC81A48DEB00006AE4C /* Include Version Info from Git into Info.plist */,
 			);
 			buildRules = (
 			);
@@ -540,6 +541,7 @@
 				2B7803971A483C1A0011D9A5 /* Frameworks */,
 				2B7803981A483C1A0011D9A5 /* Resources */,
 				2B7803E61A483FAB0011D9A5 /* Embed Frameworks */,
+				2BB04DC71A48DE7F0006AE4C /* Include Version Info from Git into Info.plist */,
 			);
 			buildRules = (
 			);
@@ -578,6 +580,7 @@
 				2B7803F01A48416D0011D9A5 /* Resources */,
 				2B7804451A4842110011D9A5 /* Embed Frameworks */,
 				2B67971E1A488C59004A196A /* Embed App Extensions */,
+				2BB04DC91A48DEBB0006AE4C /* Include Version Info from Git into Info.plist */,
 			);
 			buildRules = (
 			);
@@ -722,6 +725,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2BB04DC71A48DE7F0006AE4C /* Include Version Info from Git into Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Include Version Info from Git into Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nbranchName=`$git rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		2BB04DC81A48DEB00006AE4C /* Include Version Info from Git into Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Include Version Info from Git into Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nbranchName=`$git rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		2BB04DC91A48DEBB0006AE4C /* Include Version Info from Git into Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Include Version Info from Git into Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nbranchName=`$git rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2B6796F81A488C58004A196A /* Sources */ = {
