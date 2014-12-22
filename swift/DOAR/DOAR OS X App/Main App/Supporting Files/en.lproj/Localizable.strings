@@ -8,3 +8,6 @@
 
 "menu.open-door" = "Open Door";
 "menu.quit" = "Quit DOAR";
+"notification.door-ring.title" = "Someone is at the door.";
+"notification.door-ring.subtitle" = "Would you like to open it?";
+"notification.door-ring.action-button-title" = "Open Door";
