@@ -25,6 +25,7 @@ public struct AppConfiguration {
     public struct Notifications {
         public static let ConnectionStateDidChangeNotification = "ConnectionStateDidChangeNotification"
         public static let ConnectionDidReceiveDoorRingNotification = "ConnectionDidReceiveDoorRingNotification"
-        public static let ConnectionDidReceiveOpenDoorNotification = "ConnectionDidReceiveOpenDoorNotification"
+        public static let ConnectionDidReceiveWillOpenDoorNotification = "ConnectionDidReceiveWillOpenDoorNotification"
+        public static let ConnectionDidReceiveDidOpenDoorNotification = "ConnectionDidReceiveDidOpenDoorNotification"
     }
 }
