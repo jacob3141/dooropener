@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     var connected: Bool = false {
         didSet {
             openDoorButton.enabled = connected;
-            statusLabel.text = (connected) ? "Connected" : "Disconnected"
+            statusLabel.text = connected ? NSLocalizedString("label.state.connected", comment: "") : NSLocalizedString("label.state.disconnected", comment: "")
             
             if (!connected) {
                 self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "connectToServer", userInfo: nil, repeats: false)

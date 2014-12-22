@@ -20,40 +20,45 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var openDoorButton: WKInterfaceButton!
     let connectionController = ConnectionController()
     private var reconnectTimer: NSTimer?
-    private var state = OpenDoorState.Idle
+    private var state: OpenDoorState = .Idle {
+        didSet {
+            self.openDoorButton.setEnabled(self.state == .Idle)
+        }
+    }
     
-   // MARK: - WKInterfaceController
+    // MARK: - WKInterfaceController
     
     override init!() {
         super.init()
         self.createObservers()
-        self.connectionController.connect()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
     }
-
+    
     override func willActivate() {
+        self.connectionController.connect()
         super.willActivate()
     }
-
+    
     override func didDeactivate() {
+        self.connectionController.disconnect()
         super.didDeactivate()
     }
-
+    
     // MARK: - Helpers
     
     private func createObservers() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "connectionStateDidChange:", name: AppConfiguration.Notifications.ConnectionStateDidChangeNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserverForName(AppConfiguration.Notifications.ConnectionDidReceiveWillOpenDoorNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
-            self.state = .Opening
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "willOpenDoor:", name: AppConfiguration.Notifications.ConnectionDidReceiveWillOpenDoorNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserverForName(AppConfiguration.Notifications.ConnectionDidReceiveDidOpenDoorNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
-            self.state = .Idle
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didOpenDoor:", name: AppConfiguration.Notifications.ConnectionDidReceiveDidOpenDoorNotification, object: nil)
     }
     
     private func createReconnectTimer() {
@@ -63,6 +68,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     func reconnect(timer: NSTimer) {
+        self.reconnectTimer = nil
         self.connectionController.connect()
     }
     
@@ -81,8 +87,18 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
+    func willOpenDoor(note: NSNotification?) {
+        self.state = .Opening
+    }
+    
+    func didOpenDoor(note: NSNotification?) {
+        self.state = .Idle
+    }
+    
     @IBAction func openDoor() {
-        self.connectionController.openDoor()
+        if self.connectionController.state == .Open {
+            self.connectionController.openDoor()
+        }
     }
     
 }

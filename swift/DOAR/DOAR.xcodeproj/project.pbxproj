@@ -15,7 +15,6 @@
 		2B67970A1A488C59004A196A /* DOAR WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797091A488C59004A196A /* DOAR WatchKit App.app */; };
 		2B6797171A488C59004A196A /* DOAR WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2B6796FC1A488C58004A196A /* DOAR WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B6797291A488DCB004A196A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797281A488DCB004A196A /* Images.xcassets */; };
-		2B67972E1A488E0B004A196A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B67972D1A488E0B004A196A /* Images.xcassets */; };
 		2B6797321A488E23004A196A /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6797301A488E23004A196A /* InterfaceController.swift */; };
 		2B6797341A4895AA004A196A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797361A4895AA004A196A /* Interface.storyboard */; };
 		2B67973D1A4897ED004A196A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B67973C1A4897ED004A196A /* Localizable.strings */; };
@@ -38,7 +37,7 @@
 		2BA29A2A1A48649400C09710 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29A281A48649400C09710 /* AppConfiguration.swift */; };
 		2BB04D5E1A48AF1E0006AE4C /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */; };
 		2BB04D5F1A48AF1E0006AE4C /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */; };
-		F572F0801A487B2700130B5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F572F07F1A487B2700130B5D /* AudioToolbox.framework */; };
+		2BB04D611A48C17B0006AE4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BB04D601A48C17B0006AE4C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,7 +127,6 @@
 		2B6797271A488DC4004A196A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B6797281A488DCB004A196A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2B67972C1A488E00004A196A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B67972D1A488E0B004A196A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2B67972F1A488E1C004A196A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		2B6797301A488E23004A196A /* InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		2B6797351A4895AA004A196A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -150,12 +148,11 @@
 		2B7804291A4842100011D9A5 /* DOARKitiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DOARKitiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78044A1A4842420011D9A5 /* DOARKitiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOARKitiOS.h; sourceTree = "<group>"; };
 		2B78044C1A4842470011D9A5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2BA29A221A485D4200C09710 /* DOAROSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = DOAROSX.entitlements; path = "../../../DOAR OS X App/Main App/Supporting Files/DOAROSX.entitlements"; sourceTree = "<group>"; };
+		2BA29A221A485D4200C09710 /* DOAROSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DOAROSX.entitlements; sourceTree = "<group>"; };
 		2BA29A241A485E6200C09710 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionController.swift; sourceTree = "<group>"; };
 		2BA29A281A48649400C09710 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
-		F572F07D1A487B1E00130B5D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		F572F07F1A487B2700130B5D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		2BB04D601A48C17B0006AE4C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +182,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F572F0801A487B2700130B5D /* AudioToolbox.framework in Frameworks */,
 				2B7804401A4842110011D9A5 /* DOARKitiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,7 +267,6 @@
 		2B6797251A488D49004A196A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2B67972D1A488E0B004A196A /* Images.xcassets */,
 				2B67972C1A488E00004A196A /* Info.plist */,
 				2B67972F1A488E1C004A196A /* PushNotificationPayload.apns */,
 				2B67973C1A4897ED004A196A /* Localizable.strings */,
@@ -316,6 +311,7 @@
 		2B78039D1A483C1A0011D9A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BA29A221A485D4200C09710 /* DOAROSX.entitlements */,
 				2B7803A31A483C1A0011D9A5 /* Images.xcassets */,
 				2B78039E1A483C1A0011D9A5 /* Info.plist */,
 				2B6796F11A488424004A196A /* Localizable.strings */,
@@ -384,7 +380,6 @@
 				2B7804151A4841800011D9A5 /* Storyboards */,
 				2B7804161A4841830011D9A5 /* Supporting Files */,
 				2B7804171A4841870011D9A5 /* View Controllers */,
-				F572F0811A487B3000130B5D /* Frameworks */,
 			);
 			path = "Main App";
 			sourceTree = "<group>";
@@ -430,9 +425,9 @@
 		2B7804161A4841830011D9A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2BA29A221A485D4200C09710 /* DOAROSX.entitlements */,
 				2B78041E1A4841CD0011D9A5 /* Images.xcassets */,
 				2B78041F1A4841CD0011D9A5 /* Info.plist */,
+				2BB04D601A48C17B0006AE4C /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -483,15 +478,6 @@
 				2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */,
 			);
 			path = Starscream;
-			sourceTree = "<group>";
-		};
-		F572F0811A487B3000130B5D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F572F07F1A487B2700130B5D /* AudioToolbox.framework */,
-				F572F07D1A487B1E00130B5D /* AVFoundation.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -688,7 +674,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B67972E1A488E0B004A196A /* Images.xcassets in Resources */,
 				2B67973D1A4897ED004A196A /* Localizable.strings in Resources */,
 				2B67970A1A488C59004A196A /* DOAR WatchKit App.app in Resources */,
 			);
@@ -707,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BB04D611A48C17B0006AE4C /* Localizable.strings in Resources */,
 				2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */,
 				2B6796EF1A488424004A196A /* Localizable.strings in Resources */,
 				2B6796F61A4888E3004A196A /* doorbell.m4a in Resources */,

@@ -37,7 +37,7 @@ public class ConnectionController: WebSocketDelegate {
         self.socket.writeString(AppConfiguration.ServerCommands.openDoor)
     }
     
-    public func close() {
+    public func disconnect() {
         self.socket.disconnect()
     }
     

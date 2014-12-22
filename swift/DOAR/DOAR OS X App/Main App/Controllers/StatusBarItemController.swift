@@ -71,7 +71,7 @@ class StatusBarItemController: NSObject, NSUserNotificationCenterDelegate {
         }
         
         NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
-
+        
         let userNotification = NSUserNotification()
         userNotification.title = NSLocalizedString("notification.door-ring.title", comment: "")
         userNotification.subtitle = NSLocalizedString("notification.door-ring.subtitle", comment: "")
@@ -103,8 +103,8 @@ class StatusBarItemController: NSObject, NSUserNotificationCenterDelegate {
     }
     
     func reconnect(timer: NSTimer) {
-        self.connectionController.connect()
         self.reconnectTimer = nil
+        self.connectionController.connect()
     }
     
     // MARK: - Actions
