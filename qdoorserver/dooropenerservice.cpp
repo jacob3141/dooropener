@@ -269,8 +269,10 @@ void DoorOpenerService::ringPoll()
         qDebug() << contents;
         int value = contents.toInt();
 
-        if(value) {
+        qDebug() << value;
+        if(!value) {
             sendBroadcast("doorRing");
+            qDebug() << "Sending door ring command";
         }
         file.close();
     } else {
