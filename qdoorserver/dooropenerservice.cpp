@@ -266,10 +266,14 @@ void DoorOpenerService::ringPoll()
     file.open(QFile::ReadOnly);
     if(file.isOpen()) {
         int value = file.readAll().toInt();
+
         if(!value) {
             sendBroadcast("doorRing");
         }
         file.close();
+    } else {
+        qDebug() << "Could not access PB5 for read.";
+        qDebug() << file.errorString();
     }
 }
 
