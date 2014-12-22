@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet var openDoorButton: UIButton!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var ringImageView: UIImageView!
+    var tapGestureRecognizer: UITapGestureRecognizer!
+    
     var doorSound: SystemSoundID = 0
     var connectionController = ConnectionController()
     var connectionTimer: NSTimer?
@@ -27,10 +29,12 @@ class ViewController: UIViewController {
     
     var connected: Bool = false {
         didSet {
-            openDoorButton.enabled = connected;
+            openDoorButton.enabled = connected
+            tapGestureRecognizer.enabled = connected
             statusLabel.text = connected ? NSLocalizedString("label.state.connected", comment: "") : NSLocalizedString("label.state.disconnected", comment: "")
             
             if (!connected) {
+                UIApplication.sharedApplication().cancelAllLocalNotifications()
                 self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "connectToServer", userInfo: nil, repeats: false)
                 showActivityIndicator(true)
             } else if let timer = self.connectionTimer? {
@@ -49,6 +53,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapOpenDoorButton:")
+        self.view.addGestureRecognizer(self.tapGestureRecognizer)
         
         if let soundURL = NSBundle.mainBundle().URLForResource("doorbell", withExtension: "m4a") {
             AudioServicesCreateSystemSoundID(soundURL, &doorSound)
@@ -87,29 +94,44 @@ class ViewController: UIViewController {
             return
         }
         
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        let notification = UILocalNotification()
+        let title = NSLocalizedString("notification.door-ring.title", comment: "")
+        let subtitle = NSLocalizedString("notification.door-ring.subtitle", comment: "")
+        notification.alertBody = "\(title) \(subtitle)"
+        notification.alertAction = NSLocalizedString("notification.door-ring.action-button-title", comment: "")
+        notification.soundName = "doorbell.m4a"
+        notification.category = "doorRing"
+        
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        
         AudioServicesPlaySystemSound(doorSound)
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         self.startAnimatingRing()
     }
     
     func willOpenDoorReceived() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
         self.state = .Opening
         self.openDoorButton.enabled = false
+        self.tapGestureRecognizer.enabled = false
         self.showActivityIndicator(true)
     }
     
     func didOpenDoorReceived() {
         self.state = .Idle
         self.openDoorButton.enabled = true
+        self.tapGestureRecognizer.enabled = true
         self.hideActivityIndicator(true)
     }
     
     // MARK: - Actions
     
-    @IBAction func didTapOpenDoorButton(sender: UIButton) {
+    @IBAction func didTapOpenDoorButton(sender: AnyObject?) {
         if self.connectionController.state == .Open {
             self.showActivityIndicator(true)
             self.openDoorButton.enabled = false
+            self.tapGestureRecognizer.enabled = false
             self.connectionController.openDoor()
         }
     }
@@ -120,9 +142,9 @@ class ViewController: UIViewController {
         self.ringImageView.layer.removeAllAnimations()
         
         var scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
-        scaleAnimation.duration = 0.4;
-        scaleAnimation.repeatCount = 3;
-        scaleAnimation.autoreverses = true;
+        scaleAnimation.duration = 0.4
+        scaleAnimation.repeatCount = 3
+        scaleAnimation.autoreverses = true
         scaleAnimation.fromValue = NSNumber(float: 1.0)
         scaleAnimation.toValue = NSNumber(float: 0.8)
         

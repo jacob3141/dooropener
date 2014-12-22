@@ -13,9 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        self.registerSettingsAndCategories()
+        
         return true
     }
 
@@ -40,7 +40,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        if identifier == "openDoor" {
+            if let rootViewController = self.window?.rootViewController as? ViewController {
+                if rootViewController.state == .Idle {
+                    rootViewController.didTapOpenDoorButton(nil)
+                }
+            }
+        }
+        
+        completionHandler()
+    }
 
+    func registerSettingsAndCategories() {
+        var categories = NSMutableSet()
+        
+        var openAction = UIMutableUserNotificationAction()
+        openAction.title = NSLocalizedString("notification.door-ring.action-button-title", comment: "")
+        openAction.identifier = "openDoor"
+        openAction.activationMode = UIUserNotificationActivationMode.Foreground
+        openAction.authenticationRequired = false
+        
+        var doorRingCategory = UIMutableUserNotificationCategory()
+        doorRingCategory.setActions([openAction],
+            forContext: UIUserNotificationActionContext.Default)
+        doorRingCategory.identifier = "doorRing"
+        
+        categories.addObject(doorRingCategory)
+        
+        var settings = UIUserNotificationSettings(forTypes: (.Alert | .Badge | .Sound), categories: categories)
+        
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    }
 
 }
 

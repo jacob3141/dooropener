@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B212BAA1A486BFC0099F68B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B212BA91A486BFC0099F68B /* MainMenu.xib */; };
 		2B6796EC1A487374004A196A /* StatusBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6796EB1A487374004A196A /* StatusBarItemController.swift */; };
-		2B6796EF1A488424004A196A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F11A488424004A196A /* Localizable.strings */; };
 		2B6796F61A4888E3004A196A /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F51A4888E3004A196A /* doorbell.m4a */; };
 		2B6796F71A4888E3004A196A /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F51A4888E3004A196A /* doorbell.m4a */; };
 		2B67970A1A488C59004A196A /* DOAR WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797091A488C59004A196A /* DOAR WatchKit App.app */; };
@@ -17,7 +16,6 @@
 		2B6797291A488DCB004A196A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797281A488DCB004A196A /* Images.xcassets */; };
 		2B6797321A488E23004A196A /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6797301A488E23004A196A /* InterfaceController.swift */; };
 		2B6797341A4895AA004A196A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6797361A4895AA004A196A /* Interface.storyboard */; };
-		2B67973D1A4897ED004A196A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B67973C1A4897ED004A196A /* Localizable.strings */; };
 		2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */; };
 		2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7803A31A483C1A0011D9A5 /* Images.xcassets */; };
 		2B7803CF1A483FAB0011D9A5 /* DOAROSXKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7803CE1A483FAB0011D9A5 /* DOAROSXKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,7 +35,9 @@
 		2BA29A2A1A48649400C09710 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29A281A48649400C09710 /* AppConfiguration.swift */; };
 		2BB04D5E1A48AF1E0006AE4C /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */; };
 		2BB04D5F1A48AF1E0006AE4C /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */; };
-		2BB04D611A48C17B0006AE4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BB04D601A48C17B0006AE4C /* Localizable.strings */; };
+		2BB04D661A48C84E0006AE4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BB04D6A1A48C84E0006AE4C /* Localizable.strings */; };
+		2BB04D671A48C84E0006AE4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BB04D6A1A48C84E0006AE4C /* Localizable.strings */; };
+		2BB04D681A48C84E0006AE4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BB04D6A1A48C84E0006AE4C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,17 +120,14 @@
 /* Begin PBXFileReference section */
 		2B212BA91A486BFC0099F68B /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		2B6796EB1A487374004A196A /* StatusBarItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarItemController.swift; sourceTree = "<group>"; };
-		2B6796F01A488424004A196A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B6796F51A4888E3004A196A /* doorbell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.m4a; sourceTree = "<group>"; };
 		2B6796FC1A488C58004A196A /* DOAR WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DOAR WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B6797091A488C59004A196A /* DOAR WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DOAR WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B6797271A488DC4004A196A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B6797281A488DCB004A196A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2B67972C1A488E00004A196A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B67972F1A488E1C004A196A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		2B6797301A488E23004A196A /* InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		2B6797351A4895AA004A196A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		2B67973C1A4897ED004A196A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2B78039A1A483C1A0011D9A5 /* DOAROSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOAROSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78039E1A483C1A0011D9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,7 +149,8 @@
 		2BA29A241A485E6200C09710 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionController.swift; sourceTree = "<group>"; };
 		2BA29A281A48649400C09710 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
-		2BB04D601A48C17B0006AE4C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		2BB04D691A48C84E0006AE4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2BB04D6D1A48D97F0006AE4C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				2B6796F51A4888E3004A196A /* doorbell.m4a */,
+				2BB04D6A1A48C84E0006AE4C /* Localizable.strings */,
 			);
 			path = "Shared Resources";
 			sourceTree = "<group>";
@@ -268,8 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				2B67972C1A488E00004A196A /* Info.plist */,
-				2B67972F1A488E1C004A196A /* PushNotificationPayload.apns */,
-				2B67973C1A4897ED004A196A /* Localizable.strings */,
+				2BB04D6D1A48D97F0006AE4C /* PushNotificationPayload.apns */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -314,7 +312,6 @@
 				2BA29A221A485D4200C09710 /* DOAROSX.entitlements */,
 				2B7803A31A483C1A0011D9A5 /* Images.xcassets */,
 				2B78039E1A483C1A0011D9A5 /* Info.plist */,
-				2B6796F11A488424004A196A /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -427,7 +424,6 @@
 			children = (
 				2B78041E1A4841CD0011D9A5 /* Images.xcassets */,
 				2B78041F1A4841CD0011D9A5 /* Info.plist */,
-				2BB04D601A48C17B0006AE4C /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -674,7 +670,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B67973D1A4897ED004A196A /* Localizable.strings in Resources */,
+				2BB04D681A48C84E0006AE4C /* Localizable.strings in Resources */,
 				2B67970A1A488C59004A196A /* DOAR WatchKit App.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -692,9 +688,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BB04D611A48C17B0006AE4C /* Localizable.strings in Resources */,
+				2BB04D661A48C84E0006AE4C /* Localizable.strings in Resources */,
 				2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */,
-				2B6796EF1A488424004A196A /* Localizable.strings in Resources */,
 				2B6796F61A4888E3004A196A /* doorbell.m4a in Resources */,
 				2B212BAA1A486BFC0099F68B /* MainMenu.xib in Resources */,
 			);
@@ -711,6 +706,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BB04D671A48C84E0006AE4C /* Localizable.strings in Resources */,
 				2B78041C1A4841C60011D9A5 /* LaunchScreen.xib in Resources */,
 				2B78041D1A4841C60011D9A5 /* Main.storyboard in Resources */,
 				2B6796F71A4888E3004A196A /* doorbell.m4a in Resources */,
@@ -800,20 +796,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2B6796F11A488424004A196A /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B6796F01A488424004A196A /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		2B6797361A4895AA004A196A /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2B6797351A4895AA004A196A /* Base */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		2BB04D6A1A48C84E0006AE4C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BB04D691A48C84E0006AE4C /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -6,6 +6,8 @@
   Copyright (c) 2014 evolved.io. All rights reserved.
 */
 
+"label.state.disconnected" = "Disconnected";
+"label.state.connected" = "Connected";
 "menu.open-door" = "Open Door";
 "menu.quit" = "Quit DOAR";
 "notification.door-ring.title" = "Someone is at the door.";

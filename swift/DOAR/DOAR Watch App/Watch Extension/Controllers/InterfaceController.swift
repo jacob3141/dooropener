@@ -39,16 +39,21 @@ class InterfaceController: WKInterfaceController {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        self.connectionController.connect()
     }
     
     override func willActivate() {
-        self.connectionController.connect()
         super.willActivate()
     }
     
     override func didDeactivate() {
-        self.connectionController.disconnect()
         super.didDeactivate()
+    }
+    
+    override func handleActionWithIdentifier(identifier: String?, forLocalNotification localNotification: UILocalNotification) {
+        if identifier == "openDoor" {
+            self.openDoor()
+        }
     }
     
     // MARK: - Helpers
@@ -97,6 +102,7 @@ class InterfaceController: WKInterfaceController {
     
     @IBAction func openDoor() {
         if self.connectionController.state == .Open {
+            self.openDoorButton.setEnabled(false)
             self.connectionController.openDoor()
         }
     }

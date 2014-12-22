@@ -46,6 +46,7 @@ class StatusBarItemController: NSObject, NSUserNotificationCenterDelegate {
             self.statusItem.button?.appearsDisabled = self.connectionController.state != .Open
             
             if self.connectionController.state != .Open {
+                NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
                 self.createReconnectTimer()
             } else {
                 self.reconnectTimer?.invalidate()
