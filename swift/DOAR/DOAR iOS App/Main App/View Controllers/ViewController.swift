@@ -47,8 +47,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        connectToServer()
         registerForNotifications()
+        self.connected = false
     }
     
     deinit {
