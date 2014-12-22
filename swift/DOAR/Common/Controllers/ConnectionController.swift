@@ -28,6 +28,10 @@ public class ConnectionController: WebSocketDelegate {
         }
     }
     
+    public init() {
+        
+    }
+    
     // MARK: - Public API
     
     public func connect() {
@@ -35,11 +39,11 @@ public class ConnectionController: WebSocketDelegate {
         self.socket.connect()
     }
     
-    func openDoor() {
+    public func openDoor() {
         self.socket.writeString(AppConfiguration.ServerCommands.openDoor)
     }
     
-    func close() {
+    public func close() {
         self.socket.disconnect()
     }
     

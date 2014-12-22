@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DOARKitiOS
 
 class ViewController: UIViewController {
 

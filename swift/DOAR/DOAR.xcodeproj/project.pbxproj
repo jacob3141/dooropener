@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B212BAA1A486BFC0099F68B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B212BA91A486BFC0099F68B /* MainMenu.xib */; };
+		2B6796E71A486F4C004A196A /* StarscreamOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; };
+		2B6796E91A487070004A196A /* StarscreamOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */; };
-		2B7803A21A483C1A0011D9A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7803A11A483C1A0011D9A5 /* ViewController.swift */; };
 		2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7803A31A483C1A0011D9A5 /* Images.xcassets */; };
-		2B7803C21A483EDC0011D9A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7803C41A483EDC0011D9A5 /* Main.storyboard */; };
 		2B7803CF1A483FAB0011D9A5 /* DOAROSXKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7803CE1A483FAB0011D9A5 /* DOAROSXKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2B7803E11A483FAB0011D9A5 /* DOARKitOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7803CA1A483FAB0011D9A5 /* DOARKitOSX.framework */; };
 		2B7803E21A483FAB0011D9A5 /* DOARKitOSX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7803CA1A483FAB0011D9A5 /* DOARKitOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -50,6 +51,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2B6796E81A487064004A196A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B6796E91A487070004A196A /* StarscreamOSX.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B7803E61A483FAB0011D9A5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,12 +106,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B212BA91A486BFC0099F68B /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		2B78039A1A483C1A0011D9A5 /* DOAROSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOAROSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78039E1A483C1A0011D9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2B7803A11A483C1A0011D9A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2B7803A31A483C1A0011D9A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		2B7803C31A483EDC0011D9A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2B7803CA1A483FAB0011D9A5 /* DOARKitOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DOARKitOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7803CD1A483FAB0011D9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B7803CE1A483FAB0011D9A5 /* DOAROSXKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOAROSXKit.h; sourceTree = "<group>"; };
@@ -126,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6796E71A486F4C004A196A /* StarscreamOSX.framework in Frameworks */,
 				2B7803E11A483FAB0011D9A5 /* DOARKitOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,9 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				2B7803BD1A483E480011D9A5 /* Delegates */,
-				2B7803BF1A483E960011D9A5 /* Storyboards */,
+				2B7803BF1A483E960011D9A5 /* XIBs */,
 				2B78039D1A483C1A0011D9A5 /* Supporting Files */,
-				2B7803BE1A483E660011D9A5 /* View Controllers */,
 			);
 			path = "Main App";
 			sourceTree = "<group>";
@@ -216,20 +226,12 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
-		2B7803BE1A483E660011D9A5 /* View Controllers */ = {
+		2B7803BF1A483E960011D9A5 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				2B7803A11A483C1A0011D9A5 /* ViewController.swift */,
+				2B212BA91A486BFC0099F68B /* MainMenu.xib */,
 			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		2B7803BF1A483E960011D9A5 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				2B7803C41A483EDC0011D9A5 /* Main.storyboard */,
-			);
-			path = Storyboards;
+			path = XIBs;
 			sourceTree = "<group>";
 		};
 		2B7803CB1A483FAB0011D9A5 /* DOARKit Framework (OS X) */ = {
@@ -388,6 +390,7 @@
 				2B7803971A483C1A0011D9A5 /* Frameworks */,
 				2B7803981A483C1A0011D9A5 /* Resources */,
 				2B7803E61A483FAB0011D9A5 /* Embed Frameworks */,
+				2B6796E81A487064004A196A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -511,7 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */,
-				2B7803C21A483EDC0011D9A5 /* Main.storyboard in Resources */,
+				2B212BAA1A486BFC0099F68B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +549,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B7803A21A483C1A0011D9A5 /* ViewController.swift in Sources */,
 				2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,17 +594,6 @@
 			targetProxy = 2B78043E1A4842110011D9A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		2B7803C41A483EDC0011D9A5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B7803C31A483EDC0011D9A5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2B7803B41A483C1A0011D9A5 /* Debug */ = {
@@ -692,6 +683,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/DOAR OS X App/Main App/Supporting Files/DOAROSX.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/Mac",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/DOAR OS X App/Main App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,6 +699,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/DOAR OS X App/Main App/Supporting Files/DOAROSX.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/Mac",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/DOAR OS X App/Main App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
