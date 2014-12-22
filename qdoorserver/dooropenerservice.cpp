@@ -265,9 +265,11 @@ void DoorOpenerService::ringPoll()
     QFile file("/sys/class/gpio/gpio38_pb5/value");
     file.open(QFile::ReadOnly);
     if(file.isOpen()) {
-        int value = file.readAll().toInt();
+        QByteArray contents = file.readAll();
+        qDebug() << contents;
+        int value = contents.toInt();
 
-        if(!value) {
+        if(value) {
             sendBroadcast("doorRing");
         }
         file.close();
