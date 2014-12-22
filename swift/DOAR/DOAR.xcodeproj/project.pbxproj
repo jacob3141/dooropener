@@ -26,6 +26,8 @@
 		2BA29A261A485E6200C09710 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29A241A485E6200C09710 /* ConnectionController.swift */; };
 		2BA29A291A48649400C09710 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29A281A48649400C09710 /* AppConfiguration.swift */; };
 		2BA29A2A1A48649400C09710 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29A281A48649400C09710 /* AppConfiguration.swift */; };
+		F572F0781A486B7A00130B5D /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; };
+		F572F07A1A48703700130B5D /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F58320FA1A484CA00058CEF3 /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F58320FC1A484CC00058CEF3 /* StarscreamOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F59483E41A48482200AE331E /* StarscreamOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; };
@@ -79,6 +81,16 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F58320FA1A484CA00058CEF3 /* Starscream.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F572F0791A48702900130B5D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F572F07A1A48703700130B5D /* Starscream.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F572F0781A486B7A00130B5D /* Starscream.framework in Frameworks */,
 				2B7804401A4842110011D9A5 /* DOARKitiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +435,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B78040E1A48416D0011D9A5 /* Build configuration list for PBXNativeTarget "DOARiOS" */;
 			buildPhases = (
+				F572F0791A48702900130B5D /* CopyFiles */,
 				2B7803EE1A48416D0011D9A5 /* Sources */,
 				2B7803EF1A48416D0011D9A5 /* Frameworks */,
 				2B7803F01A48416D0011D9A5 /* Resources */,
@@ -772,6 +786,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/iOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -792,6 +810,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/DOAR iOS App/Main App/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
