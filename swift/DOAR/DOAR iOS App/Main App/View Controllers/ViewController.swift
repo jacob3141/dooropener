@@ -88,6 +88,7 @@ class ViewController: UIViewController {
         }
         
         AudioServicesPlaySystemSound(doorSound)
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         self.startAnimatingRing()
     }
     
