@@ -266,7 +266,7 @@ void DoorOpenerService::ringPoll()
     file.open(QFile::ReadOnly);
     if(file.isOpen()) {
         int value = file.readAll().toInt();
-        if(value) {
+        if(!value) {
             sendBroadcast("doorRing");
         }
         file.close();
