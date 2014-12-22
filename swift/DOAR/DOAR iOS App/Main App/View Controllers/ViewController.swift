@@ -19,20 +19,35 @@ class ViewController: UIViewController {
     @IBOutlet var ringImageView: UIImageView!
     
     var audioPlayer: AVAudioPlayer?
-    
     var connectionController = ConnectionController()
+    var connectionTimer: NSTimer?
     
     var connected: Bool = false {
         didSet {
             openDoorButton.enabled = connected;
             statusLabel.text = (connected) ? "Connected" : "Disconnected"
+            
+            if (!connected) {
+                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "connectToServer", userInfo: nil, repeats: true)
+                showActivityIndicator(true)
+            } else if let timer = self.connectionTimer? {
+                self.connectionTimer!.invalidate()
+                self.connectionTimer = nil
+                hideActivityIndicator(true)
+            }
         }
     }
+    
+    func connectToServer() {
+        self.connectionController.connect()
+    }
+    
+    /// MARK: UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.connectionController.connect()
+        connectToServer()
         registerForNotifications()
     }
     
@@ -80,13 +95,18 @@ class ViewController: UIViewController {
     }
 
     func didOpenDoorReceived() {
-        self.activityIndicator.stopAnimating()
         self.openDoorButton.enabled = true
-        
-        UIView.animateWithDuration(0.25, animations: { () -> Void in
-            self.ringImageView.alpha = 1.0
-            self.activityIndicator.alpha = 0.0
-        })
+        hideActivityIndicator(true)
+    }
+    
+    /// MARK: Actions
+    
+    @IBAction func didTapOpenDoorButton(sender: UIButton) {
+        if self.connectionController.state == .Open {
+            showActivityIndicator(true)
+            self.openDoorButton.enabled = false
+            self.connectionController.openDoor()
+        }
     }
     
     /// MARK: Animations
@@ -107,26 +127,35 @@ class ViewController: UIViewController {
     private func stopAnimatingRing() {
         self.ringImageView.layer.removeAllAnimations()
     }
-
-    /// MARK: Actions
     
-    @IBAction func didTapOpenDoorButton(sender: UIButton) {
-        openDoor()
-    }
-    
-    /// MARK: Door handling
-    
-    private func openDoor() {
-        if self.connectionController.state == .Open {
-            self.activityIndicator.startAnimating()
-            UIView.animateWithDuration(0.25, animations: { () -> Void in
-                self.ringImageView.alpha = 0.5
-                self.activityIndicator.alpha = 1.0
-            })
-            self.openDoorButton.enabled = false
-            self.connectionController.openDoor()
+    private func showActivityIndicator(animated: Bool) {
+        self.activityIndicator.startAnimating()
+        if (animated) {
+            UIView.animateWithDuration(0.25,
+                animations: { () -> Void in
+                    self.ringImageView.alpha = 0.5
+                    self.activityIndicator.alpha = 1.0
+                })
+        } else {
+            self.ringImageView.alpha = 0.5
+            self.activityIndicator.alpha = 1.0
         }
     }
     
+    private func hideActivityIndicator(animated: Bool) {
+        if (animated) {
+            UIView.animateWithDuration(0.25,
+                animations: { () -> Void in
+                    self.ringImageView.alpha = 1.0
+                    self.activityIndicator.alpha = 0.0
+                }) { _ in
+                    self.activityIndicator.stopAnimating()
+            }
+        } else {
+            self.ringImageView.alpha = 1.0
+            self.activityIndicator.alpha = 0.0
+            self.activityIndicator.stopAnimating()
+        }
+    }
 }
 
