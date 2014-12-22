@@ -25,6 +25,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QBuffer>
+#include <QFile>
 
 // Own includes
 #include "dooropenerservice.h"
@@ -46,6 +47,11 @@ DoorOpenerService::DoorOpenerService(QObject *parent)
     _frameSendTimer->setInterval(500);
     connect(_frameSendTimer, SIGNAL(timeout()), this, SLOT(sendCameraFrame()));
     _frameSendTimer->start();
+
+    _ringPollTimer = new QTimer();
+    _ringPollTimer->setInterval(50);
+    connect(_ringPollTimer, SIGNAL(timeout()), this, SLOT(ringPoll()));
+    _ringPollTimer->start();
 
     // Timer hold for opening door
     _openDoorHoldTimer = new QTimer();
@@ -253,4 +259,18 @@ void DoorOpenerService::updateConfiguration(QString file)
 
     qDebug() << "Warning: No configuration files found. Server will not work.";
 }
+
+void DoorOpenerService::ringPoll()
+{
+    QFile file("/sys/class/gpio/gpio38_pb5/value");
+    file.open(QFile::ReadOnly);
+    if(file.isOpen()) {
+        int value = file.readAll().toInt();
+        if(value) {
+            sendBroadcast("doorRing");
+        }
+        file.close();
+    }
+}
+
 

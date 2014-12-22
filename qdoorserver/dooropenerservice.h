@@ -67,6 +67,8 @@ public slots:
     /** Update server configuration from available files. */
     void updateConfiguration(QString file = "");
 
+    void ringPoll();
+
 private:
     void startService();
     void stopService();
@@ -80,6 +82,7 @@ private:
     QCamera *_camera;
     CameraFrameGrabber *_cameraFrameGrabber;
     QTimer *_frameSendTimer;
+    QTimer *_ringPollTimer;
 
     QJsonObject _configuration;
     QStringList _potentialConfigurationFiles;

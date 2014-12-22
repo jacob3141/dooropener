@@ -4,11 +4,5 @@
         "openDoorCommand": "openDoor",
         "willOpenDoorCommand": "willOpenDoor",
         "didOpenDoorCommand": "didOpenDoor"
-    },
-    "serial": {
-        "openDoorCommand": "11",
-        "closeDoorCommand": "00",
-        "deviceDiscoveryDelay": 500,
-        "openDoorHoldTime": 3000
     }
 }
