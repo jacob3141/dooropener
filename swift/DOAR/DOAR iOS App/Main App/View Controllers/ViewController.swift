@@ -7,28 +7,23 @@
 //
 
 import UIKit
+import AudioToolbox
 import DOARKitiOS
-import AVFoundation
 
 class ViewController: UIViewController {
+    enum OpenDoorState {
+        case Idle
+        case Opening
+    }
     
     @IBOutlet var statusLabel: UILabel!
     @IBOutlet var openDoorButton: UIButton!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var ringImageView: UIImageView!
-    
-    let audioPlayer: AVAudioPlayer = {
-        let url = NSBundle.mainBundle().URLForResource("doorbell", withExtension: "m4a")
-        
-        var error: NSError?
-        let audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
-        audioPlayer.prepareToPlay()
-        
-        return audioPlayer
-        }()
-    
+    var doorSound: SystemSoundID = 0
     var connectionController = ConnectionController()
     var connectionTimer: NSTimer?
+    var state = OpenDoorState.Idle
     
     var connected: Bool = false {
         didSet {
@@ -36,12 +31,12 @@ class ViewController: UIViewController {
             statusLabel.text = (connected) ? "Connected" : "Disconnected"
             
             if (!connected) {
-                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "connectToServer", userInfo: nil, repeats: true)
+                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "connectToServer", userInfo: nil, repeats: false)
                 showActivityIndicator(true)
             } else if let timer = self.connectionTimer? {
                 self.connectionTimer!.invalidate()
                 self.connectionTimer = nil
-                hideActivityIndicator(true)
+                self.hideActivityIndicator(true)
             }
         }
     }
@@ -50,20 +45,24 @@ class ViewController: UIViewController {
         self.connectionController.connect()
     }
     
-    /// MARK: UIViewController
-
+    // MARK: - UIViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        registerForNotifications()
+        if let soundURL = NSBundle.mainBundle().URLForResource("doorbell", withExtension: "m4a") {
+            AudioServicesCreateSystemSoundID(soundURL, &doorSound)
+        }
+        
+        self.registerForNotifications()
         self.connectToServer()
     }
     
     deinit {
-        unregisterFromNotifications()
+        self.unregisterFromNotifications()
     }
     
-    /// MARK: Notifications
+    // MARK: - Notifications
     
     private func registerForNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "connectionStateDidChange", name: AppConfiguration.Notifications.ConnectionStateDidChangeNotification, object: nil)
@@ -78,56 +77,50 @@ class ViewController: UIViewController {
         notificationCenter.removeObserver(self, name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification, object: nil)
         notificationCenter.removeObserver(self, name: AppConfiguration.Notifications.ConnectionDidReceiveDidOpenDoorNotification, object: nil)
     }
-
+    
     func connectionStateDidChange() {
-        switch (self.connectionController.state) {
-        case .Closed:
-            self.connected = false
-        case .Failed:
-            self.connected = false
-        case .Open:
-            self.connected = true
-        }
+        self.connected = self.connectionController.state == .Open
     }
     
     func doorRingReceived() {
-        let path = NSBundle.mainBundle().pathForResource("doorbell", ofType: "m4a")
-        let url = NSURL(string: path!)
+        if self.state == .Opening {
+            return
+        }
         
-        var error:NSError?
-        self.audioPlayer.play()
-        
-        startAnimatingRing()
+        AudioServicesPlaySystemSound(doorSound)
+        self.startAnimatingRing()
     }
-
+    
     func willOpenDoorReceived() {
+        self.state = .Opening
         self.openDoorButton.enabled = false
-        showActivityIndicator(true)
+        self.showActivityIndicator(true)
     }
     
     func didOpenDoorReceived() {
+        self.state = .Idle
         self.openDoorButton.enabled = true
-        hideActivityIndicator(true)
+        self.hideActivityIndicator(true)
     }
     
-    /// MARK: Actions
+    // MARK: - Actions
     
     @IBAction func didTapOpenDoorButton(sender: UIButton) {
         if self.connectionController.state == .Open {
-            showActivityIndicator(true)
+            self.showActivityIndicator(true)
             self.openDoorButton.enabled = false
             self.connectionController.openDoor()
         }
     }
     
-    /// MARK: Animations
+    // MARK: - Animations
     
     private func startAnimatingRing() {
         self.ringImageView.layer.removeAllAnimations()
         
         var scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimation.duration = 0.4;
-        scaleAnimation.repeatCount = 2048;
+        scaleAnimation.repeatCount = 3;
         scaleAnimation.autoreverses = true;
         scaleAnimation.fromValue = NSNumber(float: 1.0)
         scaleAnimation.toValue = NSNumber(float: 0.8)
@@ -141,31 +134,20 @@ class ViewController: UIViewController {
     
     private func showActivityIndicator(animated: Bool) {
         self.activityIndicator.startAnimating()
-        if (animated) {
-            UIView.animateWithDuration(0.25,
-                animations: { () -> Void in
-                    self.ringImageView.alpha = 0.5
-                    self.activityIndicator.alpha = 1.0
-                })
-        } else {
-            self.ringImageView.alpha = 0.5
-            self.activityIndicator.alpha = 1.0
-        }
+        UIView.animateWithDuration(animated ? 0.25 : 0,
+            animations: { () -> Void in
+                self.ringImageView.alpha = 0.5
+                self.activityIndicator.alpha = 1.0
+        })
     }
     
     private func hideActivityIndicator(animated: Bool) {
-        if (animated) {
-            UIView.animateWithDuration(0.25,
-                animations: { () -> Void in
-                    self.ringImageView.alpha = 1.0
-                    self.activityIndicator.alpha = 0.0
-                }) { _ in
-                    self.activityIndicator.stopAnimating()
-            }
-        } else {
-            self.ringImageView.alpha = 1.0
-            self.activityIndicator.alpha = 0.0
-            self.activityIndicator.stopAnimating()
+        UIView.animateWithDuration(animated ? 0.25 : 0,
+            animations: { () -> Void in
+                self.ringImageView.alpha = 1.0
+                self.activityIndicator.alpha = 0.0
+            }) { _ in
+                self.activityIndicator.stopAnimating()
         }
     }
 }

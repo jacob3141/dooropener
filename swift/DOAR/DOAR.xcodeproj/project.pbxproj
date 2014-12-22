@@ -38,7 +38,6 @@
 		2BA29A2A1A48649400C09710 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29A281A48649400C09710 /* AppConfiguration.swift */; };
 		2BB04D5E1A48AF1E0006AE4C /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */; };
 		2BB04D5F1A48AF1E0006AE4C /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB04D5D1A48AF1E0006AE4C /* WebSocket.swift */; };
-		F572F07E1A487B1E00130B5D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F572F07D1A487B1E00130B5D /* AVFoundation.framework */; };
 		F572F0801A487B2700130B5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F572F07F1A487B2700130B5D /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -187,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F572F0801A487B2700130B5D /* AudioToolbox.framework in Frameworks */,
-				F572F07E1A487B1E00130B5D /* AVFoundation.framework in Frameworks */,
 				2B7804401A4842110011D9A5 /* DOARKitiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
