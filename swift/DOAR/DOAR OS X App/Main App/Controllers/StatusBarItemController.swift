@@ -63,7 +63,7 @@ class StatusBarItemController: NSObject {
         }
     }
     
-    private func reconnect(timer: NSTimer) {
+    internal func reconnect(timer: NSTimer) {
         self.connectionController.connect()
     }
     

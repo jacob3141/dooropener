@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             statusLabel.text = (connected) ? "Connected" : "Disconnected"
             
             if (!connected) {
-                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "connectToServer", userInfo: nil, repeats: true)
+                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "connectToServer", userInfo: nil, repeats: true)
                 showActivityIndicator(true)
             } else if let timer = self.connectionTimer? {
                 self.connectionTimer!.invalidate()
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         registerForNotifications()
-        self.connected = false
+        self.connectToServer()
     }
     
     deinit {
@@ -60,6 +60,7 @@ class ViewController: UIViewController {
     private func registerForNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "connectionStateDidChange", name: AppConfiguration.Notifications.ConnectionStateDidChangeNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "doorRingReceived", name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "willOpenDoorReceived", name: AppConfiguration.Notifications.ConnectionDidReceiveWillOpenDoorNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didOpenDoorReceived", name: AppConfiguration.Notifications.ConnectionDidReceiveDidOpenDoorNotification, object: nil)
     }
     
@@ -94,6 +95,11 @@ class ViewController: UIViewController {
         startAnimatingRing()
     }
 
+    func willOpenDoorReceived() {
+        self.openDoorButton.enabled = false
+        showActivityIndicator(true)
+    }
+    
     func didOpenDoorReceived() {
         self.openDoorButton.enabled = true
         hideActivityIndicator(true)

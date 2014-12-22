@@ -12,7 +12,8 @@
 		2B6796E91A487070004A196A /* StarscreamOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B6796EC1A487374004A196A /* StatusBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6796EB1A487374004A196A /* StatusBarItemController.swift */; };
 		2B6796EF1A488424004A196A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F11A488424004A196A /* Localizable.strings */; };
-		2B6796F31A4885EC004A196A /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F21A4885EC004A196A /* doorbell.m4a */; };
+		2B6796F61A4888E3004A196A /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F51A4888E3004A196A /* doorbell.m4a */; };
+		2B6796F71A4888E3004A196A /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F51A4888E3004A196A /* doorbell.m4a */; };
 		2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */; };
 		2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7803A31A483C1A0011D9A5 /* Images.xcassets */; };
 		2B7803CF1A483FAB0011D9A5 /* DOAROSXKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7803CE1A483FAB0011D9A5 /* DOAROSXKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,7 +33,6 @@
 		2BA29A2A1A48649400C09710 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29A281A48649400C09710 /* AppConfiguration.swift */; };
 		F572F0781A486B7A00130B5D /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; };
 		F572F07A1A48703700130B5D /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F572F07C1A487AB600130B5D /* doorbell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = F572F07B1A487AB600130B5D /* doorbell.m4a */; };
 		F572F07E1A487B1E00130B5D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F572F07D1A487B1E00130B5D /* AVFoundation.framework */; };
 		F572F0801A487B2700130B5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F572F07F1A487B2700130B5D /* AudioToolbox.framework */; };
 		F58320FA1A484CA00058CEF3 /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -127,7 +127,7 @@
 		2B212BA91A486BFC0099F68B /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		2B6796EB1A487374004A196A /* StatusBarItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarItemController.swift; sourceTree = "<group>"; };
 		2B6796F01A488424004A196A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2B6796F21A4885EC004A196A /* doorbell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.m4a; sourceTree = "<group>"; };
+		2B6796F51A4888E3004A196A /* doorbell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.m4a; sourceTree = "<group>"; };
 		2B78039A1A483C1A0011D9A5 /* DOAROSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOAROSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78039E1A483C1A0011D9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,7 +148,6 @@
 		2BA29A221A485D4200C09710 /* DOAROSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = DOAROSX.entitlements; path = "../../../DOAR OS X App/Main App/Supporting Files/DOAROSX.entitlements"; sourceTree = "<group>"; };
 		2BA29A241A485E6200C09710 /* ConnectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionController.swift; sourceTree = "<group>"; };
 		2BA29A281A48649400C09710 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		F572F07B1A487AB600130B5D /* doorbell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.m4a; sourceTree = "<group>"; };
 		F572F07D1A487B1E00130B5D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		F572F07F1A487B2700130B5D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		F59483E31A48482200AE331E /* StarscreamOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarscreamOSX.framework; path = Carthage/Carthage.build/Mac/StarscreamOSX.framework; sourceTree = "<group>"; };
@@ -203,12 +202,21 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		2B6796F41A4888C9004A196A /* Shared Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2B6796F51A4888E3004A196A /* doorbell.m4a */,
+			);
+			path = "Shared Resources";
+			sourceTree = "<group>";
+		};
 		2B7803911A483C1A0011D9A5 = {
 			isa = PBXGroup;
 			children = (
 				2B7803EA1A4840F40011D9A5 /* DOAR iOS App */,
 				2B78039C1A483C1A0011D9A5 /* DOAR OS X App */,
 				2B7803ED1A4841290011D9A5 /* Shared DOARKit Framework Code */,
+				2B6796F41A4888C9004A196A /* Shared Resources */,
 				F59483E51A48484900AE331E /* Carthage */,
 				2B78039B1A483C1A0011D9A5 /* Products */,
 			);
@@ -237,7 +245,6 @@
 		2B78039D1A483C1A0011D9A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2B6796F21A4885EC004A196A /* doorbell.m4a */,
 				2B7803A31A483C1A0011D9A5 /* Images.xcassets */,
 				2B78039E1A483C1A0011D9A5 /* Info.plist */,
 				2B6796F11A488424004A196A /* Localizable.strings */,
@@ -351,7 +358,6 @@
 		2B7804161A4841830011D9A5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F572F07B1A487AB600130B5D /* doorbell.m4a */,
 				2BA29A221A485D4200C09710 /* DOAROSX.entitlements */,
 				2B78041E1A4841CD0011D9A5 /* Images.xcassets */,
 				2B78041F1A4841CD0011D9A5 /* Info.plist */,
@@ -565,8 +571,8 @@
 			files = (
 				2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */,
 				2B6796EF1A488424004A196A /* Localizable.strings in Resources */,
+				2B6796F61A4888E3004A196A /* doorbell.m4a in Resources */,
 				2B212BAA1A486BFC0099F68B /* MainMenu.xib in Resources */,
-				2B6796F31A4885EC004A196A /* doorbell.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,8 +589,8 @@
 			files = (
 				2B78041C1A4841C60011D9A5 /* LaunchScreen.xib in Resources */,
 				2B78041D1A4841C60011D9A5 /* Main.storyboard in Resources */,
+				2B6796F71A4888E3004A196A /* doorbell.m4a in Resources */,
 				2B7804201A4841CD0011D9A5 /* Images.xcassets in Resources */,
-				F572F07C1A487AB600130B5D /* doorbell.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
