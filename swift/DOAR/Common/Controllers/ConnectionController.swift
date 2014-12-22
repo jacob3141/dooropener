@@ -66,6 +66,8 @@ public class ConnectionController: WebSocketDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName(AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification, object: self)
         } else if text ==  AppConfiguration.ServerCommands.willOpenDoor {
             
+        } else if text == AppConfiguration.ServerCommands.didOpenDoor {
+            NSNotificationCenter.defaultCenter().postNotificationName(AppConfiguration.Notifications.ConnectionDidReceiveOpenDoorNotification, object: self)
         } else {
             println("Received unknown message from server: \(text)")
         }
