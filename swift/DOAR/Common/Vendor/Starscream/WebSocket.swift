@@ -83,6 +83,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
     private var fragBuffer: NSData?
     public var headers = Dictionary<String,String>()
     public var voipEnabled = false
+    public var selfSignedSSL = false
     private var connectedBlock: ((Void) -> Void)? = nil
     private var disconnectedBlock: ((NSError?) -> Void)? = nil
     private var receivedTextBlock: ((String) -> Void)? = nil
@@ -122,7 +123,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
         disconnectedBlock = disconnect
         receivedDataBlock = data
     }
-
+    
     ///Connect to the websocket server on a background thread
     public func connect() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), {
@@ -218,6 +219,11 @@ public class WebSocket : NSObject, NSStreamDelegate {
         if self.voipEnabled {
             inputStream!.setProperty(NSStreamNetworkServiceTypeVoIP, forKey: NSStreamNetworkServiceType)
             outputStream!.setProperty(NSStreamNetworkServiceTypeVoIP, forKey: NSStreamNetworkServiceType)
+        }
+        if self.selfSignedSSL {
+            let settings: Dictionary<NSObject, NSObject> = [kCFStreamSSLValidatesCertificateChain: NSNumber(bool:false), kCFStreamSSLPeerName: kCFNull]
+            inputStream!.setProperty(settings, forKey: kCFStreamPropertySSLSettings)
+            outputStream!.setProperty(settings, forKey: kCFStreamPropertySSLSettings)
         }
         isRunLoop = true
         inputStream!.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
@@ -400,7 +406,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
                 }
                 self.delegate?.websocketDidDisconnect(error)
                 writeError(errCode)
-                    
+                
                 return
             }
             let isControlFrame = (receivedOpcode == OpCode.ConnectionClose.rawValue || receivedOpcode == OpCode.Ping.rawValue)

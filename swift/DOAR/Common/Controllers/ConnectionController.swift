@@ -7,11 +7,6 @@
 //
 
 import Foundation
-#if os(OSX)
-    import StarscreamOSX
-#elseif os(iOS)
-    import Starscream
-#endif
 
 public enum ConnectionState {
     case Closed

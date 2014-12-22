@@ -8,7 +8,6 @@
 
 import WatchKit
 import Foundation
-import Starscream
 import DOARKitiOS
 
 class InterfaceController: WKInterfaceController {

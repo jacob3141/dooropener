@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Starscream
 import DOARKitiOS
 import AVFoundation
 
