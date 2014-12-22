@@ -47,8 +47,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        connectToServer()
         registerForNotifications()
+        self.connected = false
     }
     
     deinit {
@@ -60,14 +60,14 @@ class ViewController: UIViewController {
     private func registerForNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "connectionStateDidChange", name: AppConfiguration.Notifications.ConnectionStateDidChangeNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "doorRingReceived", name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didOpenDoorReceived", name: AppConfiguration.Notifications.ConnectionDidReceiveOpenDoorNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didOpenDoorReceived", name: AppConfiguration.Notifications.ConnectionDidReceiveDidOpenDoorNotification, object: nil)
     }
     
     func unregisterFromNotifications() {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.removeObserver(self, name: AppConfiguration.Notifications.ConnectionStateDidChangeNotification, object: nil)
         notificationCenter.removeObserver(self, name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification, object: nil)
-        notificationCenter.removeObserver(self, name: AppConfiguration.Notifications.ConnectionDidReceiveOpenDoorNotification, object: nil)
+        notificationCenter.removeObserver(self, name: AppConfiguration.Notifications.ConnectionDidReceiveDidOpenDoorNotification, object: nil)
     }
 
     func connectionStateDidChange() {
