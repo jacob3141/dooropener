@@ -11,22 +11,8 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="9K9-Yb-v9v" customClass="AppDelegate" customModule="DOAROSX" customModuleProvider="target">
-            <connections>
-                <outlet property="statusMenu" destination="tMd-jd-wXh" id="WDq-ZU-cLp"/>
-            </connections>
-        </customObject>
+        <customObject id="9K9-Yb-v9v" customClass="AppDelegate" customModule="DOAROSX" customModuleProvider="target"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <menu id="tMd-jd-wXh">
-            <items>
-                <menuItem title="Open Door" id="gvE-Yk-Ckd">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="openDoor" target="9K9-Yb-v9v" id="JUm-58-0yL"/>
-                    </connections>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="139" y="329.5"/>
-        </menu>
+        <customObject id="meh-8F-aDg" customClass="StatusBarItemController" customModule="DOAROSX" customModuleProvider="target"/>
     </objects>
 </document>
