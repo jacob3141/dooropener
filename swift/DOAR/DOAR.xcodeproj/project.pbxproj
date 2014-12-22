@@ -11,6 +11,7 @@
 		2B6796E71A486F4C004A196A /* StarscreamOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; };
 		2B6796E91A487070004A196A /* StarscreamOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B6796EC1A487374004A196A /* StatusBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6796EB1A487374004A196A /* StatusBarItemController.swift */; };
+		2B6796EF1A488424004A196A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B6796F11A488424004A196A /* Localizable.strings */; };
 		2B7803A01A483C1A0011D9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */; };
 		2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7803A31A483C1A0011D9A5 /* Images.xcassets */; };
 		2B7803CF1A483FAB0011D9A5 /* DOAROSXKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7803CE1A483FAB0011D9A5 /* DOAROSXKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -124,6 +125,7 @@
 /* Begin PBXFileReference section */
 		2B212BA91A486BFC0099F68B /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		2B6796EB1A487374004A196A /* StatusBarItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarItemController.swift; sourceTree = "<group>"; };
+		2B6796F01A488424004A196A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B78039A1A483C1A0011D9A5 /* DOAROSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOAROSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78039E1A483C1A0011D9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B78039F1A483C1A0011D9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				2B7803A31A483C1A0011D9A5 /* Images.xcassets */,
 				2B78039E1A483C1A0011D9A5 /* Info.plist */,
+				2B6796F11A488424004A196A /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7803A41A483C1A0011D9A5 /* Images.xcassets in Resources */,
+				2B6796EF1A488424004A196A /* Localizable.strings in Resources */,
 				2B212BAA1A486BFC0099F68B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,6 +644,17 @@
 			targetProxy = 2B78043E1A4842110011D9A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2B6796F11A488424004A196A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B6796F01A488424004A196A /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2B7803B41A483C1A0011D9A5 /* Debug */ = {
