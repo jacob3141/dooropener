@@ -32,8 +32,6 @@
 DoorOpenerService::DoorOpenerService(QObject *parent)
     : QWebSocketServer("DoorServer", QWebSocketServer::NonSecureMode, parent)
 {
-    _serialPort = new QSerialPort();
-    _serialPort->setBaudRate(9600);
 
     _camera = new QCamera();
     _cameraFrameGrabber = new CameraFrameGrabber();
@@ -49,24 +47,10 @@ DoorOpenerService::DoorOpenerService(QObject *parent)
     connect(_frameSendTimer, SIGNAL(timeout()), this, SLOT(sendCameraFrame()));
     _frameSendTimer->start();
 
-    // Time between device discoveries
-    _deviceDiscoveryTimer = new QTimer();
-    _deviceDiscoveryTimer->setSingleShot(true);
-    connect(_deviceDiscoveryTimer, SIGNAL(timeout()), this, SLOT(discoverDevices()));
-
     // Timer hold for opening door
     _openDoorHoldTimer = new QTimer();
     _openDoorHoldTimer->setSingleShot(true);
     connect(_openDoorHoldTimer, SIGNAL(timeout()), this, SLOT(turnOffDoorOpener()));
-
-    connect(_serialPort,
-            SIGNAL(readyRead()),
-            this,
-            SLOT(dataReceivedOnSerial()));
-    connect(_serialPort,
-            SIGNAL(error(QSerialPort::SerialPortError)),
-            this,
-            SLOT(handleSerialError(QSerialPort::SerialPortError)));
 
     connect(this,
             SIGNAL(newConnection()),
@@ -198,91 +182,27 @@ void DoorOpenerService::cameraStatusChanged(QCamera::Status status)
     }
 }
 
-void DoorOpenerService::discoverDevices()
-{
-    _deviceDiscoveryTimer->stop();
-    QDir dir("/dev");
-    QStringList nameFilters;
-    nameFilters << "ttyUSB*";
-    QStringList deviceList = dir.entryList(nameFilters, QDir::System);
-    if(!deviceList.isEmpty()) {
-        QString deviceName = deviceList.at(0);
-        qDebug() << "Connecting to device: " << deviceName;
-        _serialPort->setPortName(deviceName);
-        establishSerialConnection();
-    } else {
-        closeSerialConnection();
-    }
-}
-
-void DoorOpenerService::establishSerialConnection()
-{
-    _serialPort->open(QSerialPort::ReadWrite);
-    if(_serialPort->isOpen()) {
-        qDebug() << "Established connection to serial device:" << _serialPort->portName();
-    } else {
-        qDebug() << "Could not open serial port:" << _serialPort->errorString();
-        _deviceDiscoveryTimer->start();
-    }
-}
-
-void DoorOpenerService::handleSerialError(QSerialPort::SerialPortError error)
-{
-    switch(error) {
-    // Will occur when device is being removed unexpectedly
-    case QSerialPort::ResourceError:
-        qDebug() << "Device error. Check connection cable.";
-        closeSerialConnection();
-        break;
-    default:
-        break;
-    }
-}
-
-void DoorOpenerService::closeSerialConnection()
-{
-    _serialPort->close();
-    _deviceDiscoveryTimer->start();
-}
-
-void DoorOpenerService::dataReceivedOnSerial()
-{
-    if(_serialPort->canReadLine()) {
-        QByteArray byteArray = _serialPort->readLine();
-        QString messageReceived = QString::fromUtf8(byteArray);
-        qDebug() << "Received data on serial port: " << messageReceived;
-
-        if(messageReceived.contains("bell")) {
-            sendBroadcast("doorRing");
-        }
-    }
-}
-
-void DoorOpenerService::sendDataOnSerial(QString data)
-{
-    qDebug() << "Writing data to serial port: " << data;
-    _serialPort->write(QString("%1%2").arg(data).arg("\n").toUtf8());
-}
 
 void DoorOpenerService::turnOnDoorOpener()
 {
+    qDebug() << "Turn on door";
     sendBroadcast(_configuration["server"].toObject()["willOpenDoorCommand"].toString());
     // Do not attempt to open door multiple times
     if(!_openDoorHoldTimer->isActive()) {
         _openDoorHoldTimer->start();
-        sendDataOnSerial(_configuration["serial"].toObject()["openDoorCommand"].toString());
+        system("echo 1 > /sys/class/gpio/gpio40_pb7/value");
     }
 }
 
 void DoorOpenerService::turnOffDoorOpener()
 {
-    sendDataOnSerial(_configuration["serial"].toObject()["closeDoorCommand"].toString());
+    qDebug() << "Turn off door";
+    system("echo 0 > /sys/class/gpio/gpio40_pb7/value");
     sendBroadcast(_configuration["server"].toObject()["didOpenDoorCommand"].toString());
 }
 
 void DoorOpenerService::startService()
 {
-    _deviceDiscoveryTimer->setInterval(_configuration["serial"].toObject()["deviceDiscoveryDelay"].toInt());
     _openDoorHoldTimer->setInterval(_configuration["serial"].toObject()["openDoorHoldTime"].toInt());
 
     int port = _configuration["server"].toObject()["port"].toInt();
@@ -291,8 +211,6 @@ void DoorOpenerService::startService()
     } else {
         qDebug() << "Listening on port: " << port;
     }
-
-    _deviceDiscoveryTimer->start();
 }
 
 void DoorOpenerService::stopService()

@@ -22,7 +22,6 @@
 
 // Qt includes
 #include <QWebSocketServer>
-#include <QSerialPort>
 #include <QTimer>
 #include <QList>
 #include <QJsonObject>
@@ -60,24 +59,6 @@ public slots:
     //void cameraCaptureError(int id, QCameraImageCapture::Error error ,QString errorString);
     void cameraStatusChanged(QCamera::Status status);
 
-    ///////////////////////////////////////////////////////
-    // Serial interface
-    ///////////////////////////////////////////////////////
-
-    /** Read data from serial port. */
-    void dataReceivedOnSerial();
-    /** Send data to serial port. */
-    void sendDataOnSerial(QString data);
-
-    /** Search for connected devices. */
-    void discoverDevices();
-    /** Establish serial connection to device. */
-    void establishSerialConnection();
-    /** Handle errors occurred on serial port. */
-    void handleSerialError(QSerialPort::SerialPortError error);
-    /** Close serial port connection. */
-    void closeSerialConnection();
-
     /** Perform door open action. */
     void turnOnDoorOpener();
     /** Perform door close action. */
@@ -93,9 +74,7 @@ private:
     void initialStartup();
 
     QList<QWebSocket*> _connectedClients;
-    QTimer *_deviceDiscoveryTimer;
     QTimer *_openDoorHoldTimer;
-    QSerialPort *_serialPort;
 
     QImage _frame;
     QCamera *_camera;
