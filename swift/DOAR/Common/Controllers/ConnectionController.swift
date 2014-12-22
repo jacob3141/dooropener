@@ -24,13 +24,12 @@ public class ConnectionController: WebSocketDelegate {
     }
     
     public init() {
-        
+        self.socket.delegate = self
     }
     
     // MARK: - Public API
     
     public func connect() {
-        self.socket.delegate = self
         self.socket.connect()
     }
     

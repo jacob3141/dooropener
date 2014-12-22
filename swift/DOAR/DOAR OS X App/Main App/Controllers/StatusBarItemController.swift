@@ -7,10 +7,9 @@
 //
 
 import Cocoa
-import StarscreamOSX
 import DOARKitOSX
 
-class StatusBarItemController: NSObject {
+class StatusBarItemController: NSObject, NSUserNotificationCenterDelegate {
     enum OpenDoorState {
         case Idle
         case Opening
@@ -30,11 +29,17 @@ class StatusBarItemController: NSObject {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = nil
     }
     
     override func awakeFromNib() {
         self.configureStatusItem()
         self.connectionController.connect()
+        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveDoorRing:",
+            name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification,
+            object: nil)
         
         NSNotificationCenter.defaultCenter().addObserverForName(AppConfiguration.Notifications.ConnectionStateDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
             self.statusItem.menu?.update()
@@ -49,12 +54,30 @@ class StatusBarItemController: NSObject {
         }
         
         NSNotificationCenter.defaultCenter().addObserverForName(AppConfiguration.Notifications.ConnectionDidReceiveWillOpenDoorNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
+            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
             self.state = .Opening
         }
         
         NSNotificationCenter.defaultCenter().addObserverForName(AppConfiguration.Notifications.ConnectionDidReceiveDidOpenDoorNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
             self.state = .Idle
         }
+    }
+    
+    // MARK: - Notification callbacks
+    
+    func didReceiveDoorRing(notification: NSNotification!) {
+        if self.state == .Opening {
+            return
+        }
+        
+        NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
+
+        let userNotification = NSUserNotification()
+        userNotification.title = NSLocalizedString("notification.door-ring.title", comment: "")
+        userNotification.subtitle = NSLocalizedString("notification.door-ring.subtitle", comment: "")
+        userNotification.actionButtonTitle = NSLocalizedString("notification.door-ring.action-button-title", comment: "")
+        userNotification.soundName = "doorbell.m4a"
+        NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(userNotification)
     }
     
     // MARK: - Helpers
@@ -81,6 +104,7 @@ class StatusBarItemController: NSObject {
     
     func reconnect(timer: NSTimer) {
         self.connectionController.connect()
+        self.reconnectTimer = nil
     }
     
     // MARK: - Actions
@@ -101,5 +125,15 @@ class StatusBarItemController: NSObject {
         }
         
         return true
+    }
+    
+    // MARK: - NSUserNotificationCenterDelegate
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
+    }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        self.openDoor(nil)
     }
 }

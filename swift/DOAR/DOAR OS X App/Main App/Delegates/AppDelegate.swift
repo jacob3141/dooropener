@@ -11,46 +11,13 @@ import DOARKitOSX
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    @IBOutlet weak var statusBarItemController: StatusBarItemController!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveDoorRing:",
-            name: AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification,
-            object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserverForName(AppConfiguration.Notifications.ConnectionDidReceiveWillOpenDoorNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
-            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
-        }
+
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
-    }
-    
-    func appDelegateDidReceiveUserNotificationAction(notification: NSNotification) {
-        openDoor()
-    }
-    
-    func openDoor () {
-        if self.statusBarItemController.connectionController.state == .Open {
-            self.statusBarItemController.connectionController.openDoor()
-        }
-    }
-    
-    // MARK: - Actions
-    
-    func didReceiveDoorRing(notification: NSNotification!) {
-        showDoorRingNotification()
-    }
-    
-    func showDoorRingNotification() {
-        let userNotification = NSUserNotification()
-        userNotification.title = NSLocalizedString("notification.door-ring.title", comment: "")
-        userNotification.subtitle = NSLocalizedString("notification.door-ring.subtitle", comment: "")
-        userNotification.actionButtonTitle = NSLocalizedString("notification.door-ring.action-button-title", comment: "")
-        userNotification.soundName = "doorbell.m4a"
-        
-        NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(userNotification)
     }
     
 }
