@@ -266,11 +266,9 @@ void DoorOpenerService::ringPoll()
     file.open(QFile::ReadOnly);
     if(file.isOpen()) {
         QByteArray contents = file.readAll();
-        qDebug() << contents;
-        int value = contents.toInt();
 
-        qDebug() << value;
-        if(!value) {
+        // Pulldown
+        if(contents.contains("0")) {
             sendBroadcast("doorRing");
             qDebug() << "Sending door ring command";
         }
