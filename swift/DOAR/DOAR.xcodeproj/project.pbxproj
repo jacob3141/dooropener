@@ -22,6 +22,8 @@
 		2B7804401A4842110011D9A5 /* DOARKitiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7804291A4842100011D9A5 /* DOARKitiOS.framework */; };
 		2B7804411A4842110011D9A5 /* DOARKitiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7804291A4842100011D9A5 /* DOARKitiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2B78044B1A4842420011D9A5 /* DOARKitiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B78044A1A4842420011D9A5 /* DOARKitiOS.h */; };
+		F59483E41A48482200AE331E /* StarscreamOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59483E31A48482200AE331E /* StarscreamOSX.framework */; };
+		F5DEF1D11A48489F004DE3D0 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DEF1D01A48489F004DE3D0 /* Starscream.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		2B7804291A4842100011D9A5 /* DOARKitiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DOARKitiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B78044A1A4842420011D9A5 /* DOARKitiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOARKitiOS.h; sourceTree = "<group>"; };
 		2B78044C1A4842470011D9A5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F59483E31A48482200AE331E /* StarscreamOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarscreamOSX.framework; path = Carthage/Carthage.build/Mac/StarscreamOSX.framework; sourceTree = "<group>"; };
+		F5DEF1D01A48489F004DE3D0 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Carthage.build/iOS/Starscream.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59483E41A48482200AE331E /* StarscreamOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5DEF1D11A48489F004DE3D0 /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +131,7 @@
 		2B7803911A483C1A0011D9A5 = {
 			isa = PBXGroup;
 			children = (
+				F59483E51A48484900AE331E /* Carthage */,
 				2B7803EA1A4840F40011D9A5 /* DOAR iOS App */,
 				2B78039C1A483C1A0011D9A5 /* DOAR OS X App */,
 				2B7803ED1A4841290011D9A5 /* Shared DOARKit Framework Code */,
@@ -292,6 +299,15 @@
 				2B78044C1A4842470011D9A5 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F59483E51A48484900AE331E /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				F5DEF1D01A48489F004DE3D0 /* Starscream.framework */,
+				F59483E31A48482200AE331E /* StarscreamOSX.framework */,
+			);
+			name = Carthage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -640,6 +656,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -664,6 +684,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "$(SRCROOT)/DOAR OS X App/DOARKitOSX/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -720,6 +744,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/iOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -747,6 +775,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Carthage.build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/DOAR iOS App/DOARKitiOS/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;

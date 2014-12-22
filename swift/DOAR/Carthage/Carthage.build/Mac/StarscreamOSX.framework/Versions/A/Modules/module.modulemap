@@ -1,0 +1,3 @@
+framework module StarscreamOSX {
+    header "StarscreamOSX-Swift.h"
+}
