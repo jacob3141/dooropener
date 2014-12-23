@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  DOAR
+
+  Created by Sascha Schwabbauer on 22/12/14.
+  Copyright (c) 2014 evolved.io. All rights reserved.
+*/
+
+"label.state.disconnected" = "Disconnected";
+"label.state.connected" = "Connected";
+"menu.open-door" = "Open Door";
+"menu.quit" = "Quit DOAR";
+"notification.door-ring.title" = "Someone is at the door.";
+"notification.door-ring.subtitle" = "Would you like to open it?";
+"notification.door-ring.action-button-title" = "Open Door";

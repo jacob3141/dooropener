@@ -1,0 +1,13 @@
+{
+    "aps": {
+        "alert": "Someone is at the door. Would you like to open it?",
+        "category": "doorRing"
+    },
+    
+    "WatchKit Simulator Actions": [
+        {
+            "title": "Open Door",
+            "identifier": "openDoor"
+        }
+    ]
+}

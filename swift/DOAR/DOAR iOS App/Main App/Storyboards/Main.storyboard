@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DOARiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHZ-7a-MMC">
+                                <rect key="frame" x="263" y="285" width="75" height="30"/>
+                                <state key="normal" title="Open Door">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOpenDoorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WeU-S1-Tjp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disconnected…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioG-q4-tKl">
+                                <rect key="frame" x="239" y="256" width="123" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ringIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pUN-rZ-lj7">
+                                <rect key="frame" x="236" y="120" width="128" height="128"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-1M-g2f">
+                                <rect key="frame" x="282" y="165" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.45882352941176469" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="mHZ-7a-MMC" secondAttribute="centerY" id="BGG-JI-Loy"/>
+                            <constraint firstAttribute="centerX" secondItem="mHZ-7a-MMC" secondAttribute="centerX" id="E0E-7Q-Mva"/>
+                            <constraint firstItem="bDW-1M-g2f" firstAttribute="centerX" secondItem="ioG-q4-tKl" secondAttribute="centerX" id="E6Y-RM-h3U"/>
+                            <constraint firstItem="pUN-rZ-lj7" firstAttribute="centerX" secondItem="ioG-q4-tKl" secondAttribute="centerX" constant="-0.5" id="FXi-3j-1qS"/>
+                            <constraint firstItem="mHZ-7a-MMC" firstAttribute="top" secondItem="ioG-q4-tKl" secondAttribute="bottom" constant="8" id="Hsx-vO-r9A"/>
+                            <constraint firstItem="mHZ-7a-MMC" firstAttribute="centerX" secondItem="ioG-q4-tKl" secondAttribute="centerX" constant="0.5" id="noA-0i-wTj"/>
+                            <constraint firstItem="ioG-q4-tKl" firstAttribute="top" secondItem="bDW-1M-g2f" secondAttribute="bottom" constant="54" id="pEK-gz-oDS"/>
+                            <constraint firstItem="ioG-q4-tKl" firstAttribute="top" secondItem="pUN-rZ-lj7" secondAttribute="bottom" constant="8" id="pyG-m3-YUk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="bDW-1M-g2f" id="BwJ-Tm-tBf"/>
+                        <outlet property="openDoorButton" destination="mHZ-7a-MMC" id="AS6-Ch-1Zz"/>
+                        <outlet property="ringImageView" destination="pUN-rZ-lj7" id="WuH-mh-6wE"/>
+                        <outlet property="statusLabel" destination="ioG-q4-tKl" id="CIJ-x8-F19"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ringIcon" width="128" height="128"/>
+    </resources>
+</document>
