@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func registerSettingsAndCategories() {
-        var categories = NSMutableSet()
+        var categories = Set<UIMutableUserNotificationCategory>()
         
         var openAction = UIMutableUserNotificationAction()
         openAction.title = NSLocalizedString("notification.door-ring.action-button-title", comment: "")
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             forContext: UIUserNotificationActionContext.Default)
         doorRingCategory.identifier = "doorRing"
         
-        categories.addObject(doorRingCategory)
+        categories.insert(doorRingCategory)
         
         var settings = UIUserNotificationSettings(forTypes: (.Alert | .Badge | .Sound), categories: categories)
         

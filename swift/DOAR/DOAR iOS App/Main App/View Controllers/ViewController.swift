@@ -37,8 +37,8 @@ class ViewController: UIViewController {
                 UIApplication.sharedApplication().cancelAllLocalNotifications()
                 self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "connectToServer", userInfo: nil, repeats: false)
                 showActivityIndicator(true)
-            } else if let timer = self.connectionTimer? {
-                self.connectionTimer!.invalidate()
+            } else if let timer = self.connectionTimer {
+                timer.invalidate()
                 self.connectionTimer = nil
                 self.hideActivityIndicator(true)
             }

@@ -121,7 +121,7 @@ class StatusBarItemController: NSObject, NSUserNotificationCenterDelegate {
     // MARK: - NSMenu
     
     override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
-        if menuItem == self.statusItem.menu?.itemArray.first as NSMenuItem {
+        if menuItem == self.statusItem.menu?.itemArray.first as! NSMenuItem {
             return self.connectionController.state == .Open && self.state == .Idle
         }
         

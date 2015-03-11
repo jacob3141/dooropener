@@ -28,7 +28,7 @@ class InterfaceController: WKInterfaceController {
     
     // MARK: - WKInterfaceController
     
-    override init!() {
+    override init() {
         super.init()
         self.createObservers()
     }

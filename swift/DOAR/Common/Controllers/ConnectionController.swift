@@ -43,11 +43,11 @@ public class ConnectionController: WebSocketDelegate {
     
     // MARK: - WebSocketDelegate
     
-    public func websocketDidConnect() {
+    public func websocketDidConnect(socket: WebSocket) {
         self.state = ConnectionState.Open
     }
     
-    public func websocketDidDisconnect(error: NSError?) {
+    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         if let error = error {
             self.state = ConnectionState.Failed
         } else {
@@ -55,7 +55,7 @@ public class ConnectionController: WebSocketDelegate {
         }
     }
     
-    public func websocketDidReceiveMessage(text: String) {
+    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         if text == AppConfiguration.ServerCommands.doorRing {
             NSNotificationCenter.defaultCenter().postNotificationName(AppConfiguration.Notifications.ConnectionDidReceiveDoorRingNotification, object: self)
         } else if text ==  AppConfiguration.ServerCommands.willOpenDoor {
@@ -67,11 +67,7 @@ public class ConnectionController: WebSocketDelegate {
         }
     }
     
-    public func websocketDidWriteError(error: NSError?) {
-        
-    }
-    
-    public func websocketDidReceiveData(data: NSData) {
+    public func websocketDidReceiveData(socket: WebSocket, data: NSData) {
         
     }
 }
