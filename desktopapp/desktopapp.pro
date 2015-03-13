@@ -17,22 +17,22 @@
 # If not, see <http:www.gnu.org/licenses/>.
 #
 
-QT       += core gui websockets multimedia
+QT += core gui websockets multimedia widgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = qdoordesktop
+TARGET = dooropener
 TEMPLATE = app
 
-
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += \
+    main.cpp\
+    mainwindow.cpp \
     settingsdialog.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += \
+    mainwindow.h \
     settingsdialog.h
 
-FORMS    += mainwindow.ui \
+FORMS += \
+    mainwindow.ui \
     settingsdialog.ui
 
 RESOURCES += \

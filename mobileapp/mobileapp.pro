@@ -17,13 +17,30 @@
 # If not, see <http:www.gnu.org/licenses/>.
 #
 
-TEMPLATE = subdirs
-SUBDIRS = qdoorserver qdoorclient \
-    qdoordesktop
+QT += core gui websockets multimedia widgets
 
-qdoorserver.subdir = qdoorserver
-qdoorserver.depends =
+TARGET = dooropener
+TEMPLATE = app
 
-qdoorclient.subdir = qdoorclient
-qdoorclient.depends =
+SOURCES += \
+    main.cpp \
+    mainwindow.cpp \
+    slidingstackedwidget.cpp
+
+HEADERS += \
+    mainwindow.h \
+    slidingstackedwidget.h
+
+FORMS += mainwindow.ui
+
+CONFIG += mobility
+MOBILITY = 
+
+RESOURCES += \
+    resources.qrc
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+OTHER_FILES += \
+    android/AndroidManifest.xml
 

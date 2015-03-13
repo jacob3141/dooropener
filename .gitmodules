@@ -1,0 +1,3 @@
+[submodule "qtwebserver"]
+	path = qtwebserver
+	url = https://github.com/cybercatalyst/qtwebserver.git

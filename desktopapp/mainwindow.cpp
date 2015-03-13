@@ -25,8 +25,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent, Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint),
-    ui(new Ui::MainWindow)
-{
+    ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     _connected = false;
@@ -81,39 +80,33 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::connectedToServer()
-{
+void MainWindow::connectedToServer() {
     ui->pushButtonOpen->setEnabled(true);
     ui->pushButtonOpen->setText(tr("Open"));
     ui->labelConnectionState->setStyleSheet("background-color: rgb(0, 250, 0);");
     _connected = true;
 }
 
-void MainWindow::disconnectedFromServer()
-{
+void MainWindow::disconnectedFromServer() {
     ui->labelConnectionState->setStyleSheet("background-color: rgb(200, 0, 0);");
     _connected = false;
 }
 
-void MainWindow::on_pushButtonOpen_clicked()
-{
+void MainWindow::on_pushButtonOpen_clicked() {
     _webSocket->sendTextMessage("openDoor");
 }
 
-void MainWindow::on_pushButtonMute_clicked(bool on)
-{
+void MainWindow::on_pushButtonMute_clicked(bool on) {
     _settings->setValue("muted", on);
     _settings->sync();
 }
 
-void MainWindow::makeVisible()
-{
+void MainWindow::makeVisible() {
     ui->progressBar->setValue(10);
     show();
 }
 
-void MainWindow::decrementHideCounter()
-{
+void MainWindow::decrementHideCounter() {
     if(isVisible() && _connected) {
         ui->progressBar->setValue(ui->progressBar->value() - 1);
         if(ui->progressBar->value() <= 0) {
@@ -123,7 +116,6 @@ void MainWindow::decrementHideCounter()
 }
 
 void MainWindow::handleServerMessage(QString message) {
-
     if(message.contains("doorRing")) {
         if(!_settings->value("muted").toBool()) {
             _mediaPlayer->setMedia(QUrl("qrc:///images/doorbell.m4a"));
@@ -154,14 +146,12 @@ void MainWindow::tryReconnect() {
     }
 }
 
-void MainWindow::disconnectFromServer()
-{
+void MainWindow::disconnectFromServer() {
     _connected = false;
     _reconnectTimer->start();
 }
 
-void MainWindow::showSettingsDialog()
-{
+void MainWindow::showSettingsDialog() {
     SettingsDialog settingsDialog;
     settingsDialog.setIPAddress(_settings->value("server").toString());
     if(settingsDialog.exec() == QDialog::Accepted) {
@@ -171,7 +161,6 @@ void MainWindow::showSettingsDialog()
     }
 }
 
-void MainWindow::quit()
-{
+void MainWindow::quit() {
     close();
 }

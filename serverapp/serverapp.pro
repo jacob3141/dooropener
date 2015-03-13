@@ -17,31 +17,25 @@
 # If not, see <http:www.gnu.org/licenses/>.
 #
 
-QT       += core gui websockets multimedia
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = qt-door
 TEMPLATE = app
 
+QT       += core network websockets multimedia
+QT       -= gui
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    slidingstackedwidget.cpp
+TARGET = qdoorserver
+CONFIG += console
+CONFIG -= app_bundle
 
-HEADERS  += mainwindow.h \
-    slidingstackedwidget.h
+SOURCES += \
+    main.cpp \
+    dooropenerservice.cpp \
+    cameraframegrabber.cpp
 
-FORMS    += mainwindow.ui
-
-CONFIG += mobility
-MOBILITY = 
-
-RESOURCES += \
-    resources.qrc
-
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+HEADERS += \
+    dooropenerservice.h \
+    cameraframegrabber.h
 
 OTHER_FILES += \
-    android/AndroidManifest.xml
+    door.json.example
 
+include(../pods.pri)

@@ -1,0 +1,5 @@
+[qtwebserver]
+author=Jacob Dawid
+description="Embeddable, multithreaded webserver."
+license=GPLv3
+website=

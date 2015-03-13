@@ -31,9 +31,7 @@
 #include "dooropenerservice.h"
 
 DoorOpenerService::DoorOpenerService(QObject *parent)
-    : QWebSocketServer("DoorServer", QWebSocketServer::NonSecureMode, parent)
-{
-
+    : QWebSocketServer("DoorServer", QWebSocketServer::NonSecureMode, parent) {
     _camera = new QCamera();
     _cameraFrameGrabber = new CameraFrameGrabber();
     _camera->setViewfinder(_cameraFrameGrabber);
@@ -71,8 +69,7 @@ DoorOpenerService::DoorOpenerService(QObject *parent)
     startService();
 }
 
-void DoorOpenerService::handlePendingConnections()
-{
+void DoorOpenerService::handlePendingConnections() {
     while(hasPendingConnections()) {
         qDebug() << "Incoming connection";
         QWebSocket *clientSocket = nextPendingConnection();
@@ -94,8 +91,7 @@ void DoorOpenerService::handlePendingConnections()
     }
 }
 
-void DoorOpenerService::clientDisconnected()
-{
+void DoorOpenerService::clientDisconnected() {
     qDebug() << "Client disconnected";
     QWebSocket* clientSocket = dynamic_cast<QWebSocket*>(sender());
     if(!clientSocket) {
@@ -105,8 +101,7 @@ void DoorOpenerService::clientDisconnected()
     clientSocket->deleteLater();
 }
 
-void DoorOpenerService::clientMessageReceived(QString message)
-{
+void DoorOpenerService::clientMessageReceived(QString message) {
     QWebSocket* clientSocket = dynamic_cast<QWebSocket*>(sender());
     if(!clientSocket) {
         return;
@@ -119,8 +114,7 @@ void DoorOpenerService::clientMessageReceived(QString message)
     }
 }
 
-void DoorOpenerService::clientErrorOccurred(QAbstractSocket::SocketError error)
-{
+void DoorOpenerService::clientErrorOccurred(QAbstractSocket::SocketError error) {
     qDebug() << "Client error occurred";
     Q_UNUSED(error);
     QWebSocket* clientSocket = dynamic_cast<QWebSocket*>(sender());
@@ -135,20 +129,17 @@ void DoorOpenerService::clientErrorOccurred(QAbstractSocket::SocketError error)
     clientSocket->deleteLater();
 }
 
-void DoorOpenerService::sendBroadcast(QString message)
-{
+void DoorOpenerService::sendBroadcast(QString message) {
     foreach(QWebSocket* webSocket, _connectedClients) {
         webSocket->sendTextMessage(message);
     }
 }
 
-void DoorOpenerService::backupCameraFrame(QImage image)
-{
+void DoorOpenerService::backupCameraFrame(QImage image) {
     _frame = image;
 }
 
-void DoorOpenerService::sendCameraFrame()
-{
+void DoorOpenerService::sendCameraFrame() {
     if(_frame.isNull())
         return;
     QBuffer buffer;
@@ -158,8 +149,7 @@ void DoorOpenerService::sendCameraFrame()
     sendBroadcast(QString("image %1").arg(base64EncodedImage));
 }
 
-void DoorOpenerService::cameraError(QCamera::Error error)
-{
+void DoorOpenerService::cameraError(QCamera::Error error) {
     switch(error) {
     case QCamera::NoError: qDebug() << "Camera: OK"; break;
     case QCamera::CameraError: qDebug() << "Camera: unknown error"; break;
@@ -169,8 +159,7 @@ void DoorOpenerService::cameraError(QCamera::Error error)
     }
 }
 
-void DoorOpenerService::cameraStatusChanged(QCamera::Status status)
-{
+void DoorOpenerService::cameraStatusChanged(QCamera::Status status) {
     switch(status) {
     case QCamera::UnavailableStatus: qDebug() << "Camera unavailable"; break;
     case QCamera::UnloadedStatus: qDebug() << "Camera unloaded"; break;
@@ -188,9 +177,7 @@ void DoorOpenerService::cameraStatusChanged(QCamera::Status status)
     }
 }
 
-
-void DoorOpenerService::turnOnDoorOpener()
-{
+void DoorOpenerService::turnOnDoorOpener() {
     qDebug() << "Turn on door";
     sendBroadcast(_configuration["server"].toObject()["willOpenDoorCommand"].toString());
     // Do not attempt to open door multiple times
@@ -200,15 +187,13 @@ void DoorOpenerService::turnOnDoorOpener()
     }
 }
 
-void DoorOpenerService::turnOffDoorOpener()
-{
+void DoorOpenerService::turnOffDoorOpener() {
     qDebug() << "Turn off door";
     system("echo 0 > /sys/class/gpio/gpio40_pb7/value");
     sendBroadcast(_configuration["server"].toObject()["didOpenDoorCommand"].toString());
 }
 
-void DoorOpenerService::startService()
-{
+void DoorOpenerService::startService() {
     _openDoorHoldTimer->setInterval(_configuration["serial"].toObject()["openDoorHoldTime"].toInt());
 
     int port = _configuration["server"].toObject()["port"].toInt();
@@ -219,19 +204,16 @@ void DoorOpenerService::startService()
     }
 }
 
-void DoorOpenerService::stopService()
-{
+void DoorOpenerService::stopService() {
     close();
 }
 
-void DoorOpenerService::resetService()
-{
+void DoorOpenerService::resetService() {
     stopService();
     startService();
 }
 
-void DoorOpenerService::updateConfiguration(QString file)
-{
+void DoorOpenerService::updateConfiguration(QString file) {
     Q_UNUSED(file);
     foreach(QString potentialConfigurationFile, _potentialConfigurationFiles) {
         QFile file(potentialConfigurationFile);
@@ -260,8 +242,7 @@ void DoorOpenerService::updateConfiguration(QString file)
     qDebug() << "Warning: No configuration files found. Server will not work.";
 }
 
-void DoorOpenerService::ringPoll()
-{
+void DoorOpenerService::ringPoll() {
     QFile file("/sys/class/gpio/gpio38_pb5/value");
     file.open(QFile::ReadOnly);
     if(file.isOpen()) {

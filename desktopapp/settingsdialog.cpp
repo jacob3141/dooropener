@@ -22,24 +22,21 @@
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SettingsDialog)
-{
+    ui(new Ui::SettingsDialog) {
     ui->setupUi(this);
     connect(ui->pushButtonCancel, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ui->pushButtonSave, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(accept()));
 }
 
-SettingsDialog::~SettingsDialog()
-{
+SettingsDialog::~SettingsDialog() {
     delete ui;
 }
 
-void SettingsDialog::setIPAddress(QString ipAddress)
-{
+void SettingsDialog::setIPAddress(QString ipAddress) {
     ui->lineEdit->setText(ipAddress);
 }
 
-QString SettingsDialog::ipAddress()
-{
+QString SettingsDialog::ipAddress() {
     return ui->lineEdit->text();
 }
