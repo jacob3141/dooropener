@@ -29,13 +29,17 @@ CONFIG -= app_bundle
 SOURCES += \
     main.cpp \
     doordriver.cpp \
-    websocketserver.cpp
+    websocketserver.cpp \
+    indexresource.cpp
 
 HEADERS += \
     doordriver.h \
-    websocketserver.h
+    websocketserver.h \
+    indexresource.h
 
-OTHER_FILES += \
-    door.json.example
+OTHER_FILES +=
 
 include(../pods.pri)
+
+RESOURCES += \
+    resources.qrc

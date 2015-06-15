@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>cat-opening-door-handle.png</file>
+    </qresource>
+</RCC>

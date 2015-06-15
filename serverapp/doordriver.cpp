@@ -37,7 +37,7 @@ DoorDriver::DoorDriver(QObject *parent) :
     _openDoorHoldTimer = new QTimer(this);
     _openDoorHoldTimer->setSingleShot(true);
     connect(_openDoorHoldTimer, SIGNAL(timeout()),
-            this, SLOT(turnOffDoorOpener()));
+            this, SLOT(close()));
 
     _doorSemaphore = new QSemaphore(1);
 

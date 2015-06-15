@@ -1,8 +1,0 @@
-{
-    "server": {
-        "port": 1337,
-        "openDoorCommand": "openDoor",
-        "willOpenDoorCommand": "willOpenDoor",
-        "didOpenDoorCommand": "didOpenDoor"
-    }
-}

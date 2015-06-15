@@ -17,30 +17,17 @@
 // If not, see <http://www.gnu.org/licenses/>.
 //
 
-// Qt includes
-#include <QCoreApplication>
+#pragma once
 
 // QtWebServer includes
+#include "http/httpresource.h"
 
-#include "tcp/tcpmultithreadedserver.h"
-#include "http/httpwebengine.h"
+class IndexResource :
+    public QtWebServer::Http::Resource {
+public:
+    IndexResource();
+    ~IndexResource();
 
-// Own includes
-#include "websocketserver.h"
-#include "indexresource.h"
-
-int main(int argc, char *argv[]) {
-    QCoreApplication a(argc, argv);
-
-    WebSocketServer webSocketServer;
-    webSocketServer.start();
-
-    QtWebServer::Http::WebEngine webEngine;
-    webEngine.addResource(new IndexResource());
-
-    QtWebServer::Tcp::MultithreadedServer multithreadedServer;
-    multithreadedServer.setResponder(&webEngine);
-    multithreadedServer.listen(QHostAddress::Any, 4000);
-
-    return a.exec();
-}
+    void deliver(const QtWebServer::Http::Request& request,
+                 QtWebServer::Http::Response& response);
+};
