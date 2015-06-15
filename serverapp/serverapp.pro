@@ -28,12 +28,12 @@ CONFIG -= app_bundle
 
 SOURCES += \
     main.cpp \
-    dooropenerservice.cpp \
-    cameraframegrabber.cpp
+    doordriver.cpp \
+    websocketserver.cpp
 
 HEADERS += \
-    dooropenerservice.h \
-    cameraframegrabber.h
+    doordriver.h \
+    websocketserver.h
 
 OTHER_FILES += \
     door.json.example

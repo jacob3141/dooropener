@@ -1,6 +1,6 @@
 //
 // This file is part of DoorOpener.
-// Copyright (c) 2014 Jacob Dawid <jacob@omg-it.works>
+// Copyright (c) 2014-2015 Jacob Dawid <jacob@omg-it.works>
 //
 // DoorOpener is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,28 +17,36 @@
 // If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef CAMERAFRAMEGRABBER_H
-#define CAMERAFRAMEGRABBER_H
+#pragma once
 
 // Qt includes
-#include <QAbstractVideoSurface>
-#include <QList>
+#include <QObject>
+#include <QSemaphore>
+#include <QTimer>
 
-class CameraFrameGrabber : public QAbstractVideoSurface
-{
+class DoorDriver : public QObject {
     Q_OBJECT
 public:
-    explicit CameraFrameGrabber(QObject *parent = 0);
-
-    QList<QVideoFrame::PixelFormat> supportedPixelFormats(QAbstractVideoBuffer::HandleType handleType) const;
-
-    bool present(const QVideoFrame &frame);
+    static DoorDriver& instance();
+    ~DoorDriver();
 
 signals:
-    void frameAvailable(QImage frame);
+    void opened();
+    void closed();
+    void ring();
+    void error(QString message);
 
 public slots:
+    void open(int holdDuration = 3000);
 
+protected slots:
+    void close();
+    void ringPoll();
+
+private:
+    DoorDriver(QObject *parent = 0);
+
+    QTimer *_openDoorHoldTimer;
+    QTimer *_ringPollTimer;
+    QSemaphore *_doorSemaphore;
 };
-
-#endif // CAMERAFRAMEGRABBER_H

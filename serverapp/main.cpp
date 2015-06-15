@@ -1,6 +1,6 @@
 //
 // This file is part of DoorOpener.
-// Copyright (c) 2014 Jacob Dawid <jacob@omg-it.works>
+// Copyright (c) 2014-2015 Jacob Dawid <jacob@omg-it.works>
 //
 // DoorOpener is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -20,13 +20,15 @@
 // Qt includes
 #include <QCoreApplication>
 
-// Own includes
-#include "dooropenerservice.h"
+// QtWebServer includes
 
-int main(int argc, char *argv[])
-{
+// Own includes
+#include "websocketserver.h"
+
+int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
-    DoorOpenerService webSocketServer;
-    Q_UNUSED(webSocketServer);
+    WebSocketServer webSocketServer;
+    webSocketServer.start();
+
     return a.exec();
 }
