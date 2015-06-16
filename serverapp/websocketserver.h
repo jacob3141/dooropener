@@ -43,7 +43,6 @@ public slots:
     /** Handle errors occurred with a client. */
     void clientErrorOccurred(QAbstractSocket::SocketError error);
 
-
 private slots:
     void sendOpenCommand();
     void broadcastDoorOpened();

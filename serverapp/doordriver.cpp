@@ -26,7 +26,6 @@
 #define DOOR_OPEN_IO "/sys/class/gpio/gpio41/value"
 #define DOOR_RING_IO "/sys/class/gpio/gpio39/value"
 
-
 DoorDriver& DoorDriver::instance() {
     static DoorDriver doorService;
     return doorService;
@@ -56,9 +55,9 @@ void DoorDriver::open(int holdDuration) {
     if(!_openDoorHoldTimer->isActive()) {
         if(system(QString("echo 1 > %1").arg(DOOR_OPEN_IO).toStdString().c_str()) == 0) {
             emit opened();
+            system("espeak \"Door is opening.\" -p 99");
             _openDoorHoldTimer->setInterval(holdDuration);
             _openDoorHoldTimer->start();
-
         }
     }
     _doorSemaphore->release();
