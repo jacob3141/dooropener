@@ -64,6 +64,10 @@ void DoorDriver::open(int holdDuration) {
     _doorSemaphore->release();
 }
 
+void DoorDriver::simulateRing() {
+    emit ring();
+}
+
 void DoorDriver::close() {
     _doorSemaphore->acquire();
     if(system(QString("echo 0 > %1").arg(DOOR_OPEN_IO).toStdString().c_str()) == 0) {

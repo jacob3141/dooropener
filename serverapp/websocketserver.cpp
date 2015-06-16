@@ -83,7 +83,7 @@ void WebSocketServer::clientMessageReceived(QString message) {
         return;
     }
 
-    if(message.contains("openDoorCommand")) {
+    if(message.contains("openDoor")) {
         sendOpenCommand();
     }
 }
@@ -124,20 +124,5 @@ void WebSocketServer::broadcastDoorClosed() {
 }
 
 void WebSocketServer::broadcastRing() {
-    broadcast("doorBell");
+    broadcast("doorRing");
 }
-
-void WebSocketServer::start() {
-    listen(QHostAddress::Any, 3000);
-}
-
-void WebSocketServer::stop() {
-    close();
-}
-
-void WebSocketServer::resetService() {
-    stop();
-    start();
-}
-
-

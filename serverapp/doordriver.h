@@ -38,6 +38,7 @@ signals:
 
 public slots:
     void open(int holdDuration = 3000);
+    void simulateRing();
 
 protected slots:
     void close();

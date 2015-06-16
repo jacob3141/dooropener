@@ -30,10 +30,6 @@ class WebSocketServer :
 public:
     WebSocketServer(QObject *parent = 0);
 
-    void start();
-    void stop();
-    void resetService();
-
     /** Send a broadcast message to all clients. */
     void broadcast(QString message);
 

@@ -21,7 +21,6 @@
 #include <QCoreApplication>
 
 // QtWebServer includes
-
 #include "tcp/tcpmultithreadedserver.h"
 #include "http/httpwebengine.h"
 
@@ -30,17 +29,20 @@
 #include "indexresource.h"
 
 int main(int argc, char *argv[]) {
-    QCoreApplication a(argc, argv);
+    QCoreApplication application(argc, argv);
 
+    // Configure websocket server
     WebSocketServer webSocketServer;
-    webSocketServer.start();
+    webSocketServer.listen(QHostAddress::Any, 8080);
 
+    // Configure webserver
     QtWebServer::Http::WebEngine webEngine;
     webEngine.addResource(new IndexResource());
 
-    QtWebServer::Tcp::MultithreadedServer multithreadedServer;
-    multithreadedServer.setResponder(&webEngine);
-    multithreadedServer.listen(QHostAddress::Any, 4000);
+    QtWebServer::Tcp::MultithreadedServer multithreadedWebServer;
+    multithreadedWebServer.setResponder(&webEngine);
+    multithreadedWebServer.listen(QHostAddress::Any, 80);
 
-    return a.exec();
+    // Run application
+    return application.exec();
 }

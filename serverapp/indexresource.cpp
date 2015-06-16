@@ -47,6 +47,9 @@ void IndexResource::deliver(const QtWebServer::Http::Request& request,
             "<button type=\"submit\" name=\"action\" value=\"open\">"
                 "Open door"
             "</button>"
+            "<button type=\"submit\" name=\"action\" value=\"simulate-ring\">"
+                "Simulate ring"
+            "</button>"
         "</form>")
         .arg(QString::fromUtf8(urlEncodedCatImage));
 
@@ -58,6 +61,11 @@ void IndexResource::deliver(const QtWebServer::Http::Request& request,
             DoorDriver::instance().open();
 
             body += "<p><b>The door has been opened.</b></p>";
+            response.setHeader(QtWebServer::Http::Refresh, "2");
+        } else if(formParameters["action"] == "simulate-ring") {
+            DoorDriver::instance().simulateRing();
+
+            body += "<p><b>Ring simulated.</b></p>";
             response.setHeader(QtWebServer::Http::Refresh, "2");
         }
     }
